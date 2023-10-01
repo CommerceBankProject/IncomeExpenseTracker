@@ -13,10 +13,19 @@ This table holds information about registered users.
 **Columns**:
 - `id`: Unique identifier for the user.
 - `email`: Email address used for registration and communication.
-- `hashed_password`: Encrypted password for user security.
+- `password`: Hashed and salted password for user security.
+- `salt`: A random string that is concatenated with the password before hashing. It is unique per user and ensures that identical passwords yield different hashes, enhancing security.
 - `full_name`: User's full name.
 - `date_created`: Date when the user account was created.
 - `last_updated`: Date when any user's data was last updated.
+
+**Additional Details**:
+- `email` should be unique across the table to ensure that each email is associated with exactly one account.
+- `password` is stored as a hash of the actual user password concatenated with the `salt` to provide an additional layer of security. In practical usage, upon login, the system will concatenate the provided password with the stored `salt`, hash the combination, and verify it against this stored hashed password.
+- `salt` is utilized to mitigate potential risks associated with hash attacks (such as rainbow table attacks) by providing unique hashes for identically valued passwords and ensuring different users with the same password have distinct hashes in the database. Salts should be generated using a secure random number generator.
+- `created_at` and `updated_at` are timestamps that allow for tracking of user account creation and the latest update times, which can be valuable for administrative or audit purposes.
+
+This schema provides a robust basis for user account management while ensuring a high degree of security through the usage of hashed and salted passwords.
 
 ---
 
