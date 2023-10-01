@@ -112,3 +112,14 @@ Information about alerts sent to users.
 2. **Security**: Passwords are stored as hashed values for security. 
 
 3. **Flexibility**: The design supports extensions like multi-currency, integration with banks, or introduction of other financial tracking features in the future.
+
+---
+
+## How to Create Database using commerce_bank_script.sql:
+
+1. Open mySQL Shell
+2. Connect to your user/root and enter the below commands
+   1.  \sql
+   2.  CREATE DATABASE `[your-database-name]`;
+   3.  \source `[file-path\commerce_bank_script.sql]`
+
