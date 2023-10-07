@@ -1,24 +1,20 @@
 package TeamHaLoi.IncomeExpenseTracker.model;
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 @Entity
-@Table((name="user_account"))
+@Table(name="user_account")
 public class UserAccount {
     @Id
     @GeneratedValue
     private Long id;
-    @NotBlank
     private String email;
-    @NotBlank
     private String password;
-    @NotBlank
     private String salt;
-    @NotBlank
     private String full_name;
-    @NotBlank
     private String date_created;
-    @NotBlank
     private String last_updated;
     public UserAccount(){
         super();
@@ -32,6 +28,15 @@ public class UserAccount {
     }
     public Long getId(){
         return id;
+    }
+    public String getEmail(){
+        return email;
+    }
+    public String getPassword(){
+        return password;
+    }
+    public String getFull_name(){
+        return full_name;
     }
     public void setId(Long id){
         this.id = id;
