@@ -129,6 +129,7 @@ Information about alerts sent to users.
 1. Open mySQL Shell
 2. Connect to your user/root and enter the below commands
    1.  \sql
-   2.  CREATE DATABASE `[your-database-name]`;
-   3.  \source `[file-path\commerce_bank_script.sql]`
+   2.  \connect -u root --mysql
+   3.  CREATE DATABASE `[your-database-name]`;
+   4.  \source `[file-path\commerce_bank_script.sql]`
 
