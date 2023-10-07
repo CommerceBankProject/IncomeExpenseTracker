@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="202bebf2-736a-4e7e-90e7-a89e36ba660d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+    <list default="true" id="202bebf2-736a-4e7e-90e7-a89e36ba660d" name="Changes" comment="user account model">
+      <changelist_data name="jasminethai-hub" email="jtt9fb@umsystem.edu" />
+      <change afterPath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/java/TeamHaLoi/IncomeExpenseTracker/controller/UserAccountController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/java/TeamHaLoi/IncomeExpenseTracker/repository/UserAccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IncomeExpense_JavaSpring/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/IncomeExpense_JavaSpring/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,11 +18,23 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="jasminethai-hub &lt;jtt9fb@umsystem.edu&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SIGN_OFF_COMMIT" value="true" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="9d08d101-adfc-49d3-b270-1611f6f96e4c" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
   <component name="ProjectId" id="2WJPFDgCrexd7lvLGOmrO4NwK96" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -29,7 +44,9 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/UMKC/Capstone/IncomeExpenseTracker/IncomeExpense_JavaSpring"
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/jasmi/IncomeExpenseTracker",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -41,6 +58,15 @@
       <option name="presentableId" value="Default" />
       <updated>1696447610071</updated>
     </task>
+    <task id="LOCAL-00001" summary="user account model">
+      <option name="closed" value="true" />
+      <created>1696703227036</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1696703227036</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -53,5 +79,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="user account model" />
+    <option name="LAST_COMMIT_MESSAGE" value="user account model" />
   </component>
 </project>
