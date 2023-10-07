@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import jakarta.validation.Valid;
 import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 @RequestMapping("/user_accounts")  // Set the base URL for all endpoints in this controller
@@ -45,7 +47,8 @@ public class UserAccountController {
 
         userAccount.setEmail(userAccountDetails.getEmail());
         userAccount.setPassword(userAccountDetails.getPassword());
-        userAccount.setFull_name(userAccountDetails.getFull_name());
+        userAccount.setFirstName(userAccountDetails.getFirstName());
+        userAccount.setLastName(userAccountDetails.getLastName());
 
         return userAccountRepository.save(userAccount);
     }
