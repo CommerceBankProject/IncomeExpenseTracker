@@ -15,7 +15,8 @@ This table holds information about registered users.
 - `email`: Email address used for registration and communication.
 - `password`: Hashed and salted password for user security.
 - `salt`: A random string that is concatenated with the password before hashing. It is unique per user and ensures that identical passwords yield different hashes, enhancing security.
-- `full_name`: User's full name.
+- `first_name`: User's first name.
+- `last_name`: User's last name.
 - `date_created`: Date when the user account was created.
 - `last_updated`: Date when any user's data was last updated.
 
