@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
-@RequestMapping("/user_accounts")  // Set the base URL for all endpoints in this controller
+@RequestMapping("api/user_login")  // Set the base URL for all endpoints in this controller
 public class UserAccountController {
 
     @Autowired
