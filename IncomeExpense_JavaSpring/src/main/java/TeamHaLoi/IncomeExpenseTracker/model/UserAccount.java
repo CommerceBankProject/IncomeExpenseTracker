@@ -22,6 +22,7 @@ public class UserAccount {
     private String password;
 
     private String salt;
+
     @Column(name = "first_name")
     private String firstName;
 

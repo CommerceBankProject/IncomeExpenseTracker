@@ -10,6 +10,8 @@ import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import TeamHaLoi.IncomeExpenseTracker.security.PasswordUtil;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/user_accounts")  // Set the base URL for all endpoints in this controller
@@ -46,9 +48,11 @@ public class UserAccountController {
                 .orElseThrow(() -> new UserAccountNotFoundException(userId));
 
         userAccount.setEmail(userAccountDetails.getEmail());
-        userAccount.setPassword(userAccountDetails.getPassword());
+        String hashedPassword = PasswordUtil.hashPassword(userAccountDetails.getPassword(), userAccount.getSalt());
+        userAccount.setPassword(hashedPassword);
         userAccount.setFirstName(userAccountDetails.getFirstName());
         userAccount.setLastName(userAccountDetails.getLastName());
+        userAccount.setUpdatedAt(LocalDateTime.now());
 
         return userAccountRepository.save(userAccount);
     }
