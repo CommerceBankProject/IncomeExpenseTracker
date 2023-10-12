@@ -1,67 +1,90 @@
 import "./login.css"
 import bankLogo from "./Image/logo.jpg"
-import React, { useState, useEffect } from 'react';
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
-function LoginPage()
-{
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-
-    const handleLogin = async () => {
+function LoginPage() {
+   
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+    async function login(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+        event.preventDefault();
         try {
-            const response = await fetch('http://localhost:5173/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type' : 'application/json',
-                },
-                body: JSON.stringify({email, password}),
-            });
-
-            if (response.ok)
+          await axios.post("http://localhost:8081/api/user_login", {
+            email: email,
+            password: password,
+            }).then((res) => 
             {
-                 // Login successful
-            }
-            else
-            {
-                setError('Invalid pleas try again');
-            }
-        }catch (error)
-    {
-        setError('An error occurred. Please try again later.');
-    }
-};
-
-return (
-    <div  className="bg">
-        <div className="left-login">
-            <header>
-                <div className="com-brand">
-                    <header><img src = {bankLogo} alt="Bank logo" className="logo"></img></header>
-                    <section>
-                        <header>
-                            <h2>Sign In</h2>
-                        </header>
-
+             console.log(res.data);
+             
+             if (res.data.message == "Email not exits") 
+             {
+               alert("Email not exits");
+             } 
+             else if(res.data.message == "Login Success")
+             { 
+                
+                //navigate('/home');
+             } 
+              else 
+             { 
+                alert("Incorrect Email and Password not match");
+             }
+          }, fail => {
+           console.error(fail); // Error!
+  });
+        }
+ 
+         catch (err) {
+          alert(err);
+        }
+      
+      }
+      return (
+        <div  className="bg">
+            <div className="left-login">
+                <header>
+                    <div className="com-brand">
+                        <header><img src = {bankLogo} alt="Bank logo" className="logo"></img></header>
                         <section>
-                            <label>Email ID: </ label><br />
-                            <input type="text" id="emailId" name="emailId" /><br /><br />
-                            <label>Password: </label><br />
-                            <input type="password" id="uPassword" name="uPassword" /><br /><br />
-                            <a href="url">forget password</a> <br /><br />
-                            <input type="checkbox" id="rememberEmail" name="rememberEmail" value="reEmail" />
-                            <label> Remember my Email ID</label><br /><br />
-                            <button name="subject" type="submit" value="HTML">Sign In</button>
-                        </section>
-                    </section>
-                    <footer>
+                            <header>
+                                <h2>Sign In</h2>
+                            </header>
+    
+                            <section>
+                                <label>Email ID: </ label><br />
+                                <input type="email" id="email" name="email" 
+                                value={email}
+                                onChange={(event) => {
+                                setEmail(event.target.value);
+                                }}/><br /><br />
 
-                    </footer>
-                </div>
-            </header>
+                                <label>Password: </label><br />
+                                <input type="password" id="password" name="password" 
+                                
+                                value={password}
+                                onChange={(event) => {
+                                setPassword(event.target.value);
+                                }}
+                                
+                                /><br /><br />
+                                <a href="url">forget password</a> <br /><br />
+                                <input type="checkbox" id="rememberEmail" name="rememberEmail" value="reEmail" />
+                                <label> Remember my Email ID</label><br /><br />
+                                <button type="submit" onClick={(event) => login(event)}>Sign In</button>
+                            </section>
+                        </section>
+                        <footer>
+    
+                        </footer>
+                    </div>
+                </header>
+            </div>
         </div>
-    </div>
-  );
-}
+      );
+  }
+
 
 export default LoginPage; 

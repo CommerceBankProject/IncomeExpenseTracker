@@ -14,7 +14,7 @@ import TeamHaLoi.IncomeExpenseTracker.security.PasswordUtil;
 import java.time.LocalDateTime;
 
 @RestController
-@RequestMapping("/user_accounts")  // Set the base URL for all endpoints in this controller
+@RequestMapping("api/user_login")  // Set the base URL for all endpoints in this controller
 public class UserAccountController {
 
     @Autowired
