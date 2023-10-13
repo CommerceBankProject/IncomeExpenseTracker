@@ -3,6 +3,8 @@ import bankLogo from "./Image/logo.jpg"
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { Link } from 'react-router-dom';
+
 
 function LoginPage() {
    
@@ -55,14 +57,14 @@ function LoginPage() {
     
                             <section>
                                 <label>Email ID: </ label><br />
-                                <input type="email" id="email" name="email" 
+                                <input type="email" className="input-style" id="email" name="email" 
                                 value={email}
                                 onChange={(event) => {
                                 setEmail(event.target.value);
                                 }}/><br /><br />
 
                                 <label>Password: </label><br />
-                                <input type="password" id="password" name="password" 
+                                <input type="password" className="input-style" id="password" name="password" 
                                 
                                 value={password}
                                 onChange={(event) => {
@@ -73,7 +75,8 @@ function LoginPage() {
                                 <a href="url">forget password</a> <br /><br />
                                 <input type="checkbox" id="rememberEmail" name="rememberEmail" value="reEmail" />
                                 <label> Remember my Email ID</label><br /><br />
-                                <button type="submit" onClick={(event) => login(event)}>Sign In</button>
+                                <button type="submit" onClick={(event) => login(event)}>Sign In</button><br /><br />
+                                <Link to="/create-account">Create an account</Link>
                             </section>
                         </section>
                         <footer>
