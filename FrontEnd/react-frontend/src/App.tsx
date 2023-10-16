@@ -1,8 +1,20 @@
-import Message from './Message';
+import RegisterPage from './register';
 import LoginPage from './login';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+
 
 function App(){
-  return <div><LoginPage /></div>
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/create-account" element={<RegisterPage />} />
+      </Routes>
+
+    </Router>
+  )
 }
 
 export default App;
