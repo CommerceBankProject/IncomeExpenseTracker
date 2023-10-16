@@ -2,7 +2,7 @@ package TeamHaLoi.IncomeExpenseTracker.controller;
 
 import TeamHaLoi.IncomeExpenseTracker.model.UserAccount;
 import TeamHaLoi.IncomeExpenseTracker.repository.UserAccountRepository;
-import TeamHaLoi.IncomeExpenseTracker.exception.UserAccountNotFoundException; // Ensure you create this exception class
+import TeamHaLoi.IncomeExpenseTracker.exception.UserAccountNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import TeamHaLoi.IncomeExpenseTracker.security.PasswordUtil;
 import java.time.LocalDateTime;
 
 @RestController
-@RequestMapping("api/user_login")  // Set the base URL for all endpoints in this controller
+@RequestMapping("/user_accounts")  // Set the base URL for all endpoints in this controller ; localhost/user_accounts
 public class UserAccountController {
 
     @Autowired

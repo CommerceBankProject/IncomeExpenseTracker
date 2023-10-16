@@ -38,7 +38,6 @@ public class AuthController {
         }
     }
 
-
     // Build Register REST API
     @PostMapping(value = {"/register", "/signup"})
     public ResponseEntity<String> register(@RequestBody RegisterDto registerDto){
@@ -46,7 +45,7 @@ public class AuthController {
         if(user != null) {
             return ResponseEntity.ok("User created successfully");
         } else {
-            return ResponseEntity.status(401).body("creation failed");
+            return ResponseEntity.status(401).body("User creation failed");
         }
     }
 
@@ -55,5 +54,4 @@ public class AuthController {
         System.out.println("Test endpoint hit");
         return "Test successful!";
     }
-
 }
