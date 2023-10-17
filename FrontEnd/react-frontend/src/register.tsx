@@ -2,6 +2,13 @@ import { useState } from "react";
 import "./register.css"
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+function checkEmail(email: string): boolean{
+  const emailFormat = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i ;
+  return emailFormat.test(email);
+}
 
 function registerPage() {
   
@@ -12,6 +19,12 @@ function registerPage() {
     const [rePassword, setRePassword] = useState("");
     async function save(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         event.preventDefault();
+        if (password != rePassword)
+        {
+
+           return;
+        }
+
         try {
           await axios.post("http://localhost:8081/api/user_register", {
           firstname: firstname,

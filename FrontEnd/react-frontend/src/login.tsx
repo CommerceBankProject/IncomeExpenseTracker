@@ -1,18 +1,41 @@
 import "./login.css"
 import bankLogo from "./Image/logo.jpg"
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import axios from "axios";
+import { redirect, useNavigate } from 'react-router-dom';
+import axios from "axios"; // Making HTTP requests from a web browser 
 import { Link } from 'react-router-dom';
+import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function LoginPage() {
    
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errorCount, setErrorCount] = useState(0);
+    
+   
+    const MAX_ERROR_COUNT = 3;
     const navigate = useNavigate();
+
     async function login(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         event.preventDefault();
+    
+          if (!email || !password)
+        {
+          if (errorCount < MAX_ERROR_COUNT) {
+            toast.error("Please enter both email and password.",
+          {
+            position: "top-right",
+          });
+          setErrorCount(errorCount + 1);
+          }
+          //Add the "error" class to email input
+          return;
+        }
+        
         try {
           await axios.post("http://localhost:8081/api/user_login", {
             email: email,
@@ -23,18 +46,29 @@ function LoginPage() {
              
              if (res.data.message == "Email not exits") 
              {
-               alert("Email not exits");
+              toast.error("Email address is not exist",
+              {
+                position: "top-right",
+              });
              } 
              else if(res.data.message == "Login Success")
              { 
+              toast.info("Login Success",
+              {
+                position: "top-right",
+              });
                 
                 //navigate('/home');
              } 
               else 
              { 
-                alert("Incorrect Email and Password not match");
+              toast.error("Incorrect Email and Password not match",
+              {
+                position: "top-right",
+              });
              }
           }, fail => {
+            
            console.error(fail); // Error!
   });
         }
@@ -44,10 +78,13 @@ function LoginPage() {
         }
       
       }
+
+      
       return (
         <div  className="bg">
             <div className="left-login">
                 <header>
+                  <ToastContainer />
                     <div className="com-brand">
                         <header><img src = {bankLogo} alt="Bank logo" className="logo"></img></header>
                         <section>
@@ -57,11 +94,14 @@ function LoginPage() {
     
                             <section>
                                 <label>Email ID: </ label><br />
-                                <input type="email" className="input-style" id="email" name="email" 
+                                <input type="text" className="input-style" id="email" name="email" 
                                 value={email}
                                 onChange={(event) => {
                                 setEmail(event.target.value);
-                                }}/><br /><br />
+                                }
+                                
+                                }
+                               /><br /><br />
 
                                 <label>Password: </label><br />
                                 <input type="password" className="input-style" id="password" name="password" 
