@@ -22,6 +22,7 @@ function DashBoard() {
 
     return(
         <div>
+            <button type="submit" onClick={(event) => UserInfor(event)}>Click</button>
 
             <h2></h2>
             <h2></h2>
