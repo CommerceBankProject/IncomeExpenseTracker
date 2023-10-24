@@ -3,8 +3,6 @@
 ## Overview:
 The Income-Expense Tracker Database is designed to support a web-based application for tracking user incomes and expenses. This documentation describes the tables, their columns, and their relationships.
 
----
-
 ## Tables:
 
 ### 1. `user_account`:
@@ -14,19 +12,17 @@ This table holds information about registered users.
 - `id`: Unique identifier for the user.
 - `email`: Email address used for registration and communication.
 - `password`: Hashed and salted password for user security.
-- `salt`: A random string that is concatenated with the password before hashing. It is unique per user and ensures that identical passwords yield different hashes, enhancing security.
+- `salt`: A random string concatenated with the password before hashing for enhanced security.
 - `first_name`: User's first name.
 - `last_name`: User's last name.
-- `date_created`: Date when the user account was created.
-- `last_updated`: Date when any user's data was last updated.
+- `created_at`: Date when the user account was created.
+- `updated_at`: Date when any user's data was last updated.
 
 **Additional Details**:
 - `email` should be unique across the table to ensure that each email is associated with exactly one account.
-- `password` is stored as a hash of the actual user password concatenated with the `salt` to provide an additional layer of security. In practical usage, upon login, the system will concatenate the provided password with the stored `salt`, hash the combination, and verify it against this stored hashed password.
-- `salt` is utilized to mitigate potential risks associated with hash attacks (such as rainbow table attacks) by providing unique hashes for identically valued passwords and ensuring different users with the same password have distinct hashes in the database. Salts should be generated using a secure random number generator.
-- `created_at` and `updated_at` are timestamps that allow for tracking of user account creation and the latest update times, which can be valuable for administrative or audit purposes.
-
-This schema provides a robust basis for user account management while ensuring a high degree of security through the usage of hashed and salted passwords.
+- `password` is stored as a hash of the actual user password concatenated with the `salt` to provide an additional layer of security.
+- `salt` is utilized to mitigate potential risks associated with hash attacks.
+- `created_at` and `updated_at` are timestamps that allow for tracking of user account creation and the latest update times.
 
 ---
 
@@ -35,9 +31,13 @@ This table stores information about users' bank accounts.
 
 **Columns**:
 - `id`: Unique identifier for the bank account.
-- `account_name`: A name or label for the bank account.
-- `date_created`: Date when the bank account was added.
-- `last_updated`: Date when any bank account data was last updated.
+- `account_number`: Unique number associated with the bank account.
+- `bank_name`: Name of the bank where the account is held.
+- `account_type`: Type of account (e.g., Savings, Checking).
+- `balance`: Current balance of the bank account.
+- `status`: Current status of the account (e.g., active, inactive).
+- `created_at`: Date when the bank account was added.
+- `updated_at`: Date when any bank account data was last updated.
 
 ---
 
@@ -45,8 +45,10 @@ This table stores information about users' bank accounts.
 This table establishes a many-to-many relationship between users and bank accounts.
 
 **Columns**:
-- `user_id`: Foreign key to the `user_account` table.
-- `bank_account_id`: Foreign key to the `bank_account` table.
+- `user_id`: Foreign key referencing the `user_account` table.
+- `bank_account_id`: Foreign key referencing the `bank_account` table.
+- `account_alias`: An optional name/alias given to the linked bank account.
+- `date_linked`: Date when the user linked the bank account.
 
 ---
 
@@ -66,7 +68,18 @@ Logs of deposits or withdrawals as incomes or expenses.
 
 ---
 
-### 5. `budgets_goals`:
+### 5. `transaction_categories`:
+This table stores the different categories for transactions.
+
+**Columns**:
+- `id`: Unique identifier for the category.
+- `name`: Name of the category (e.g., Groceries, Utilities).
+- `created_at`: Date and time when the category was added.
+- `updated_at`: Date and time when the category data was last updated.
+
+---
+
+### 6. `budgets_goals`:
 Information about users' budget and financial goals.
 
 **Columns**:
@@ -81,18 +94,21 @@ Information about users' budget and financial goals.
 
 ---
 
-### 6. `reports`:
+### 7. `reports`:
 Generated reports comparing income and expenses.
 
 **Columns**:
 - `id`: Unique identifier for the report.
-- `bank_account_id`: Foreign key to the `bank_account` table.
-- `content`: Content of the report.
-- `date_generated`: Date when the report was generated.
+- `bank_account_id`: Foreign key referencing the `bank_account` table.
+- `generated_date`: Date when the report was generated.
+- `type`: Type of the report.
+- `file_link`: Link to access the generated report file.
+- `created_at`: Date and time when the report was added.
+- `updated_at`: Date and time when the report data was last updated.
 
 ---
 
-### 7. `notifications`:
+### 8. `notifications`:
 Information about alerts sent to users.
 
 **Columns**:
@@ -107,21 +123,21 @@ Information about alerts sent to users.
 
 ## Relationships:
 
-1. A user can have multiple bank accounts, and a bank account can belong to multiple users (`user_account` to `bank_account` is a many-to-many relationship facilitated by `user_bank_account_link`).
-
-2. Each transaction, budget/goal, and report is associated with a specific bank account.
-
-3. Notifications are tied to a specific user and, when relevant, to a specific report.
+1. A user can have multiple bank accounts, and a bank account can belong to multiple users.
+2. Each transaction is associated with a specific bank account and can belong to a specific category.
+3. Budgets or goals are associated with a specific bank account.
+4. Reports are generated for a specific bank account.
+5. Notifications are tied to a specific user and, when relevant, to a specific report.
 
 ---
 
 ## Design Principles:
 
-1. **Normalization**: The database is normalized up to Boyce Codd's Normal Form (BCNF) to reduce data redundancy and improve integrity.
+1. **Normalization**: The database is normalized to reduce data redundancy and improve integrity.
+2. **Security**: Passwords are stored as hashed values for security.
+3. **Flexibility**: The design supports extensions in the future.
 
-2. **Security**: Passwords are stored as hashed values for security. 
-
-3. **Flexibility**: The design supports extensions like multi-currency, integration with banks, or introduction of other financial tracking features in the future.
+---
 
 ---
 
