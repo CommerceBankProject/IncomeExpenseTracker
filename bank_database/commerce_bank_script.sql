@@ -21,11 +21,11 @@ CREATE TABLE bank_account (
 );
 
 CREATE TABLE user_bank_account_link (
+  link_id int PRIMARY KEY AUTO_INCREMENT,
   user_id int NOT NULL,
   bank_account_id int NOT NULL,
   account_alias varchar(255),
   date_linked date,
-  primary key(user_id, bank_account_id)
 );
 
 CREATE TABLE transactions (
