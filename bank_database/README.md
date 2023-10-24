@@ -45,6 +45,7 @@ This table stores information about users' bank accounts.
 This table establishes a many-to-many relationship between users and bank accounts.
 
 **Columns**:
+- `link_id`: Unique identifier for the user bank account link
 - `user_id`: Foreign key referencing the `user_account` table.
 - `bank_account_id`: Foreign key referencing the `bank_account` table.
 - `account_alias`: An optional name/alias given to the linked bank account.
