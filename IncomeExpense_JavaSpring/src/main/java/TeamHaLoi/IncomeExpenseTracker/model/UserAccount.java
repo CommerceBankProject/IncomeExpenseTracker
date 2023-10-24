@@ -6,6 +6,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 import java.time.LocalDateTime;
+import TeamHaLoi.IncomeExpenseTracker.model.UserBankAccountLink;
+import java.util.Set;
+import jakarta.persistence.OneToMany;
+
+
 
 @Entity
 @Table(name="user_account")
@@ -34,6 +39,10 @@ public class UserAccount {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "userAccount")
+    private Set<UserBankAccountLink> bankAccountLinks;
+
     public UserAccount(){
         super();
     }
