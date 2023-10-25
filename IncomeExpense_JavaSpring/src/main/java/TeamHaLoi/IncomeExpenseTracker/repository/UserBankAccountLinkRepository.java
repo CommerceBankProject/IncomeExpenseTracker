@@ -9,4 +9,5 @@ import java.util.List;
 public interface UserBankAccountLinkRepository extends JpaRepository<UserBankAccountLink, Integer> {
     List<UserBankAccountLink> findByUserAccount_Id(Integer userAccountId);
     List<UserBankAccountLink> findByBankAccount_Id(Integer bankAccountId);
+
 }

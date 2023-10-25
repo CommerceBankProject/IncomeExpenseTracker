@@ -30,14 +30,14 @@ public class BankAccountController {
 
     // Get a Single BankAccount
     @GetMapping("/{id}")
-    public BankAccount getBankAccountById(@PathVariable(value = "id") Long bankAccountId) throws BankAccountNotFoundException {
+    public BankAccount getBankAccountById(@PathVariable(value = "id") Integer bankAccountId) throws BankAccountNotFoundException {
         return bankAccountRepository.findById(bankAccountId)
                 .orElseThrow(() -> new BankAccountNotFoundException(bankAccountId));
     }
 
     // Update a BankAccount
     @PutMapping("/{id}")
-    public BankAccount updateBankAccount(@PathVariable(value = "id") Long bankAccountId,
+    public BankAccount updateBankAccount(@PathVariable(value = "id") Integer bankAccountId,
                                          @Valid @RequestBody BankAccount bankAccountDetails) throws BankAccountNotFoundException {
 
         BankAccount bankAccount = bankAccountRepository.findById(bankAccountId)
@@ -55,7 +55,7 @@ public class BankAccountController {
 
     // Delete a BankAccount
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteBankAccount(@PathVariable(value = "id") Long bankAccountId) throws BankAccountNotFoundException {
+    public ResponseEntity<?> deleteBankAccount(@PathVariable(value = "id") Integer bankAccountId) throws BankAccountNotFoundException {
         BankAccount bankAccount = bankAccountRepository.findById(bankAccountId)
                 .orElseThrow(() -> new BankAccountNotFoundException(bankAccountId));
 

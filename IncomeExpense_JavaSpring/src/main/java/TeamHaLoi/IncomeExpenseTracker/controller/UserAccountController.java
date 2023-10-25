@@ -34,14 +34,14 @@ public class UserAccountController {
 
     // Get a Single UserAccount
     @GetMapping("/{id}")
-    public UserAccount getUserAccountById(@PathVariable(value = "id") Long userId) throws UserAccountNotFoundException {
+    public UserAccount getUserAccountById(@PathVariable(value = "id") Integer userId) throws UserAccountNotFoundException {
         return userAccountRepository.findById(userId)
                 .orElseThrow(() -> new UserAccountNotFoundException(userId));
     }
 
     // Update a UserAccount
     @PutMapping("/{id}")
-    public UserAccount updateUserAccount(@PathVariable(value = "id") Long userId,
+    public UserAccount updateUserAccount(@PathVariable(value = "id") Integer userId,
                                          @Valid @RequestBody UserAccount userAccountDetails) throws UserAccountNotFoundException {
 
         UserAccount userAccount = userAccountRepository.findById(userId)
@@ -59,7 +59,7 @@ public class UserAccountController {
 
     // Delete a UserAccount
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUserAccount(@PathVariable(value = "id") Long userId) throws UserAccountNotFoundException {
+    public ResponseEntity<?> deleteUserAccount(@PathVariable(value = "id") Integer userId) throws UserAccountNotFoundException {
         UserAccount userAccount = userAccountRepository.findById(userId)
                 .orElseThrow(() -> new UserAccountNotFoundException(userId));
 
