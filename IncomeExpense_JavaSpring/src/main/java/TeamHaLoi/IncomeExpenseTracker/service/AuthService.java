@@ -35,8 +35,6 @@ public class AuthService {
 
 
     public UserAccount register(RegisterDto registerDto) {
-
-
         // Create a new user account
         UserAccount newUser = new UserAccount();
         newUser.setEmail(registerDto.getEmail());

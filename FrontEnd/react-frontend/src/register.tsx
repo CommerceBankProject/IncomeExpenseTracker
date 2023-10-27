@@ -22,12 +22,12 @@ function validation(email: string, firstName: string, lastName: string, password
   {
     if (email === "")
     {
-
+      alert("Please enter you email");
     }
 
     else
     {
-
+      alert("Please enter a valid email");
     }
     //error
   }
@@ -41,12 +41,12 @@ function validation(email: string, firstName: string, lastName: string, password
   {
     if (password === "")
     {
-
+      alert("Plse enter your password");
     }
 
     else
     {
-
+      alert("Both password have to be the same")
     }
   }
 
@@ -55,15 +55,18 @@ function validation(email: string, firstName: string, lastName: string, password
     count++;
   }
   else{
-
+    alert("Plse enter your first name");
   }
 
   if (lastName !=="")
   {
+    count++;
 
   }else{
-    
+    alert("Plse enter your last name");
   }
+
+  return count;
 }
 
 function registerPage() {
@@ -76,6 +79,13 @@ function registerPage() {
     async function save(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         event.preventDefault();
 
+        let checkInput: number = validation(email, firstname,lastname,password,rePassword);
+        
+        if (checkInput < 4)
+        {
+          return;
+        }
+
         try {
           const response = await axios.post("http://localhost:8080/auth/user_register", {
           firstName: firstname,
@@ -85,7 +95,7 @@ function registerPage() {
           rePassword: rePassword,
           });
 
-          if (response.data === "User data received successfully") {
+          if (response) {
             toast.success("User data received successfully"); // Display a confirmation message
             alert("User data received successfully");
         } else {

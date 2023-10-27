@@ -1,17 +1,14 @@
 package TeamHaLoi.IncomeExpenseTracker.controller;
-import TeamHaLoi.IncomeExpenseTracker.model.UserAccount;
 
 import TeamHaLoi.IncomeExpenseTracker.payload.LoginDto;
 import TeamHaLoi.IncomeExpenseTracker.payload.RegisterDto;
 import TeamHaLoi.IncomeExpenseTracker.service.AuthService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping(value = "/auth")
@@ -24,23 +21,26 @@ public class AuthController {
     }
 
     // Build Login REST API
-    @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@RequestBody LoginDto loginDto) {
+    @CrossOrigin(origins = "http://localhost:5173")
+    @PostMapping("/user_login")//The URL backend: localhost:8080/auth/user_register
+    public ResponseEntity<Boolean> authenticateUser(@RequestBody LoginDto loginDto) {
         // Define the user variable
-        boolean auth = authService.authenticateUser(loginDto);
+//        boolean auth = authService.authenticateUser(loginDto);
+//        if(auth) {
+//            System.out.println("Authentication Successful");
+//            return ResponseEntity.ok("User authenticated successfully");
+//        } else {
+//            System.out.println("Authentication Failed");
+//            return ResponseEntity.status(401).body("Authentication failed");
+//        }
 
-        if(auth) {
-            System.out.println("Authentication Successful");
-            return ResponseEntity.ok("User authenticated successfully");
-        } else {
-            System.out.println("Authentication Failed");
-            return ResponseEntity.status(401).body("Authentication failed");
-        }
+        return ResponseEntity.ok(true);
+
     }
 
     //Build REST API for the backend to connect with the Frontend
     @CrossOrigin(origins = "http://localhost:5173") //Allow the access from the front end port here is 5173
-    @PostMapping("/user_register")// The location we want to map our post here is http://localhost:5173/user_register
+    @PostMapping("/user_register")// The URL backend: localhost:8080/auth/user_register
     public ResponseEntity<String> registerResponse(@RequestBody RegisterDto registerDto)
     {
         String responseMsg = "User data received successfully";

@@ -37,40 +37,17 @@ function LoginPage() {
         }
         
         try {
-          await axios.post("http://localhost:8081/api/user_login", {
+          const response = await axios.post("http://localhost:8080/auth/user_login", {
             email: email,
             password: password,
-            }).then((res) => 
+            }); 
+            if (response) 
             {
-             console.log(res.data);
-             
-             if (res.data.message == "Email not exits") 
-             {
-              toast.error("Email address is not exist",
-              {
-                position: "top-right",
-              });
-             } 
-             else if(res.data.message == "Login Success")
-             { 
-              toast.info("Login Success",
-              {
-                position: "top-right",
-              });
-                
-                //navigate('/home');
-             } 
-              else 
-             { 
-              toast.error("Incorrect Email and Password not match",
-              {
-                position: "top-right",
-              });
-             }
-          }, fail => {
-            
-           console.error(fail); // Error!
-  });
+              toast.success("User data received successfully"); // Display a confirmation message
+              alert("User data received successfully");
+            } else {
+              alert("An error occurred"); // Handle other response scenarios
+          }
         }
  
          catch (err) {

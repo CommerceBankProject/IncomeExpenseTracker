@@ -6,15 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="202bebf2-736a-4e7e-90e7-a89e36ba660d" name="Changes" comment="login/register API">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrontEnd/react-frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/react-frontend/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrontEnd/react-frontend/src/Message.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/FrontEnd/react-frontend/src/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/react-frontend/src/login.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FrontEnd/react-frontend/src/register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/react-frontend/src/register.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/java/TeamHaLoi/IncomeExpenseTracker/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/java/TeamHaLoi/IncomeExpenseTracker/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/java/TeamHaLoi/IncomeExpenseTracker/controller/BankAccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/java/TeamHaLoi/IncomeExpenseTracker/controller/BankAccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/java/TeamHaLoi/IncomeExpenseTracker/payload/RegisterDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/java/TeamHaLoi/IncomeExpenseTracker/payload/RegisterDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/java/TeamHaLoi/IncomeExpenseTracker/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/java/TeamHaLoi/IncomeExpenseTracker/service/AuthService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bank_database/commerce_bank_script.sql" beforeDir="false" afterPath="$PROJECT_DIR$/bank_database/commerce_bank_script.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,15 +43,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/UMKC/Capstone/IncomeExpenseTracker&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/UMKC/Capstone/IncomeExpenseTracker/IncomeExpense_JavaSpring",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
