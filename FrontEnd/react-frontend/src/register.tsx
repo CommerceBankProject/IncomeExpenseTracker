@@ -10,6 +10,62 @@ function checkEmail(email: string): boolean{
   return emailFormat.test(email);
 }
 
+function validation(email: string, firstName: string, lastName: string, password: string, rePassword: string)
+{
+  let count: number = 0; 
+  if (checkEmail(email) && email !=="")
+  {
+    count++;
+  }
+
+  else
+  {
+    if (email === "")
+    {
+
+    }
+
+    else
+    {
+
+    }
+    //error
+  }
+
+  if (password === rePassword)
+  {
+    count++;
+  }
+
+  else
+  {
+    if (password === "")
+    {
+
+    }
+
+    else
+    {
+
+    }
+  }
+
+  if (firstName !=="")
+  {
+    count++;
+  }
+  else{
+
+  }
+
+  if (lastName !=="")
+  {
+
+  }else{
+    
+  }
+}
+
 function registerPage() {
   
     const [firstname, setFirstName] = useState("");
@@ -19,21 +75,22 @@ function registerPage() {
     const [rePassword, setRePassword] = useState("");
     async function save(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         event.preventDefault();
-        if (password != rePassword)
-        {
-
-           return;
-        }
 
         try {
-          await axios.post("http://localhost:8081/api/user_register", {
-          firstname: firstname,
-          lastname: lastname,
+          const response = await axios.post("http://localhost:8080/auth/user_register", {
+          firstName: firstname,
+          lastName: lastname,
           email: email,
           password: password,
           rePassword: rePassword,
           });
-          alert("Employee Registation Successfully");
+
+          if (response.data === "User data received successfully") {
+            toast.success("User data received successfully"); // Display a confirmation message
+            alert("User data received successfully");
+        } else {
+            alert("An error occurred"); // Handle other response scenarios
+        }
         } catch (err) {
           alert(err);
         }
@@ -46,6 +103,7 @@ function registerPage() {
             <p>Please fill in this form to create an account.</p>
             <hr></hr>
 
+            <form>
             <label><b>First Name</b></label>
             <input type="text" placeholder="First Name" name="firstname" id="firstname" required 
             
@@ -99,6 +157,7 @@ function registerPage() {
             <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
             <button type="submit" className="registerbtn" onClick={save}>Register</button>
+            </form>
         </div>
 
         <div className="container signin">

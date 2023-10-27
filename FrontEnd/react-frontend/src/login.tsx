@@ -116,7 +116,7 @@ function LoginPage() {
                                 <input type="checkbox" id="rememberEmail" name="rememberEmail" value="reEmail" />
                                 <label> Remember my Email ID</label><br /><br />
                                 <button type="submit" onClick={(event) => login(event)}>Sign In</button><br /><br />
-                                <Link to="/create-account">Create an account</Link>
+                                <Link to="/user_register">Create an account</Link>
                             </section>
                         </section>
                         <footer>

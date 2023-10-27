@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping(value = "/auth")
 public class AuthController {
 
     private AuthService authService;
@@ -38,15 +38,19 @@ public class AuthController {
         }
     }
 
-    // Build Register REST API
-    @PostMapping(value = {"/register", "/signup"})
-    public ResponseEntity<String> register(@RequestBody RegisterDto registerDto){
-        UserAccount user = authService.register(registerDto);
-        if(user != null) {
-            return ResponseEntity.ok("User created successfully");
-        } else {
-            return ResponseEntity.status(401).body("User creation failed");
-        }
+    //Build REST API for the backend to connect with the Frontend
+    @CrossOrigin(origins = "http://localhost:5173") //Allow the access from the front end port here is 5173
+    @PostMapping("/user_register")// The location we want to map our post here is http://localhost:5173/user_register
+    public ResponseEntity<String> registerResponse(@RequestBody RegisterDto registerDto)
+    {
+        String responseMsg = "User data received successfully";
+        System.out.println(registerDto.getFirstName());
+        System.out.println(registerDto.getLastName());
+        System.out.println(registerDto.getEmail());
+        System.out.println(registerDto.getPassword());
+
+
+        return ResponseEntity.ok(responseMsg);
     }
 
     @GetMapping("/test")

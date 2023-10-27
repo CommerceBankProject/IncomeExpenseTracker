@@ -23,7 +23,7 @@ public class BankAccountController {
     }
 
     // Create a new BankAccount
-    @PostMapping
+    @PostMapping()
     public BankAccount createBankAccount(@Valid @RequestBody BankAccount bankAccount) {
         return bankAccountRepository.save(bankAccount);
     }
