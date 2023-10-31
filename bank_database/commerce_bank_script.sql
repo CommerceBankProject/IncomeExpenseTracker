@@ -25,7 +25,7 @@ CREATE TABLE user_bank_account_link (
   user_id int NOT NULL,
   bank_account_id int NOT NULL,
   account_alias varchar(255),
-  date_linked date,
+  date_linked date
 );
 
 CREATE TABLE transactions (

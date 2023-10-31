@@ -7,6 +7,7 @@ public class RegisterDto {
     private String email;
     private String password;
     private String salt;
+    private String rePassword;
     private LocalDateTime createdAt;
 
     public String getEmail() {
@@ -45,6 +46,16 @@ public class RegisterDto {
         return lastName;
     }
 
+    public void setRePassword(String rePassword)
+    {
+        this.rePassword = rePassword;
+    }
+
+    public String getRePassword()
+    {
+        return rePassword;
+    }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -55,5 +66,7 @@ public class RegisterDto {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
+
 
 }
