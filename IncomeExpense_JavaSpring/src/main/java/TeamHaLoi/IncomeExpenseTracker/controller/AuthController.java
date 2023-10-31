@@ -1,5 +1,7 @@
 package TeamHaLoi.IncomeExpenseTracker.controller;
 
+
+import TeamHaLoi.IncomeExpenseTracker.model.UserAccount;
 import TeamHaLoi.IncomeExpenseTracker.payload.LoginDto;
 import TeamHaLoi.IncomeExpenseTracker.payload.RegisterDto;
 import TeamHaLoi.IncomeExpenseTracker.service.AuthService;
@@ -23,18 +25,16 @@ public class AuthController {
     // Build Login REST API
     @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping("/user_login")//The URL backend: localhost:8080/auth/user_register
-    public ResponseEntity<Boolean> authenticateUser(@RequestBody LoginDto loginDto) {
-        // Define the user variable
-//        boolean auth = authService.authenticateUser(loginDto);
-//        if(auth) {
-//            System.out.println("Authentication Successful");
-//            return ResponseEntity.ok("User authenticated successfully");
-//        } else {
-//            System.out.println("Authentication Failed");
-//            return ResponseEntity.status(401).body("Authentication failed");
-//        }
-
-        return ResponseEntity.ok(true);
+    public ResponseEntity<String> authenticateUser(@RequestBody LoginDto loginDto) {
+        //Define the user variable
+       boolean auth = authService.authenticateUser(loginDto);
+        if(auth) {
+           System.out.println("Authentication Successful");
+           return ResponseEntity.ok("User authenticated successfully");
+       } else {
+            System.out.println("Authentication Failed");
+           return ResponseEntity.status(401).body("Authentication failed");
+        }
 
     }
 
@@ -43,14 +43,13 @@ public class AuthController {
     @PostMapping("/user_register")// The URL backend: localhost:8080/auth/user_register
     public ResponseEntity<String> registerResponse(@RequestBody RegisterDto registerDto)
     {
-        String responseMsg = "User data received successfully";
-        System.out.println(registerDto.getFirstName());
-        System.out.println(registerDto.getLastName());
-        System.out.println(registerDto.getEmail());
-        System.out.println(registerDto.getPassword());
-
-
-        return ResponseEntity.ok(responseMsg);
+        UserAccount user = authService.register(registerDto);
+        if(user != null) {
+            return ResponseEntity.ok("User created successfully");
+        } else {
+            return ResponseEntity.status(401).body("User creation failed");
+        }
+        //System.out.println("Test endpoint hit");
     }
 
     @GetMapping("/test")

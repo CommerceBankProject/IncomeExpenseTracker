@@ -96,10 +96,10 @@ function registerPage() {
           });
 
           if (response) {
-            toast.success("User data received successfully"); // Display a confirmation message
+            toast.success("User created successfully"); // Display a confirmation message
             alert("User data received successfully");
         } else {
-            alert("An error occurred"); // Handle other response scenarios
+            alert("User creation failed"); // Handle other response scenarios
         }
         } catch (err) {
           alert(err);

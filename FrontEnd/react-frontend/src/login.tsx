@@ -43,10 +43,10 @@ function LoginPage() {
             }); 
             if (response) 
             {
-              toast.success("User data received successfully"); // Display a confirmation message
-              alert("User data received successfully");
+              toast.success("User authenticated successfully"); // Display a confirmation message
+              navigate('/home');
             } else {
-              alert("An error occurred"); // Handle other response scenarios
+              alert("Authentication failed"); // Handle other response scenarios
           }
         }
  
