@@ -10,12 +10,14 @@ import TeamHaLoi.IncomeExpenseTracker.payload.BankAccountCreationRequestDto;
 import TeamHaLoi.IncomeExpenseTracker.exception.UserBankAccountLinkNotFoundException; // You should have an appropriate exception or reuse from your existing ones.
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.time.LocalDateTime;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/user_bank_account_links")
 public class UserBankAccountLinkController {
 
@@ -93,5 +95,4 @@ public class UserBankAccountLinkController {
             throw new IllegalArgumentException("Invalid link ID format: " + linkIdStr);
         }
     }
-
 }

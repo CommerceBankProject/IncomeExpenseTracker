@@ -26,7 +26,7 @@ function registerPage() {
         }
 
         try {
-          await axios.post("http://localhost:8081/api/user_register", {
+          await axios.post("http://localhost:8081/auth/user_register", {
           firstname: firstname,
           lastname: lastname,
           email: email,
