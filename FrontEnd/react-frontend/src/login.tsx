@@ -7,6 +7,8 @@ import "./login.css";
         import React from 'react';
         import { ToastContainer, toast } from 'react-toastify';
         import 'react-toastify/dist/ReactToastify.css';
+        import { useParams } from 'react-router-dom';
+
 
         function LoginPage() {
         const [email, setEmail] = useState("");
@@ -39,15 +41,16 @@ import "./login.css";
         }).then((res) => {
         console.log(res.data);
 
-        if (res.data === "Email not exits") {
+        if (res.data.message === "Email not exits") {
         toast.error("Email address is not exist", {
         position: "top-right",
         });
-        } else if (res.data === "User authenticated successfully") {
+        } else if (res.data.message === "User authenticated successfully") {
         toast.info("Login Success", {
         position: "top-right",
         });
-        navigate('/dashBoard');
+        const userId = res.data.userId;
+        navigate(`/dashBoard/${userId}`);
         } else {
         toast.error("Incorrect Email and Password not match", {
         position: "top-right",

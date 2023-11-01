@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.time.LocalDateTime;
+import java.util.Random;
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
@@ -27,7 +29,6 @@ public class UserBankAccountLinkController {
     private BankAccountRepository bankAccountRepository;
     @Autowired
     private UserAccountRepository userAccountRepository;
-
 
     // Get All Links
     @GetMapping
@@ -65,9 +66,12 @@ public class UserBankAccountLinkController {
         UserAccount userAccount = userAccountRepository.findById(request.getUserId())
                 .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + request.getUserId()));
 
+        // Generate a random account number
+        String accountNumber = generateRandomAccountNumber();
+
         // Create the bank account
         BankAccount newAccount = new BankAccount();
-        newAccount.setAccountNumber(request.getAccountNumber());
+        newAccount.setAccountNumber(accountNumber);  // Set the generated account number
         newAccount.setBankName(request.getBankName());
         newAccount.setStatus("active");
         newAccount.setAccountType(request.getAccountType().toUpperCase());
@@ -78,6 +82,12 @@ public class UserBankAccountLinkController {
         // Create and link the new account to the user
         UserBankAccountLink link = new UserBankAccountLink(userAccount, savedAccount, request.getAccountAlias());
         return userBankAccountLinkRepository.save(link);
+    }
+
+    private String generateRandomAccountNumber() {
+        Random random = new Random();
+        long num = 1_000_000_000L + random.nextLong(9_000_000_000L);  // Generate a random number between 1_000_000_000 and 9_999_999_999
+        return String.valueOf(num);
     }
 
     // Delete a Link

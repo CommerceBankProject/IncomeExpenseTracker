@@ -1,7 +1,11 @@
 package TeamHaLoi.IncomeExpenseTracker.controller;
 
 import TeamHaLoi.IncomeExpenseTracker.model.UserAccount;
+import TeamHaLoi.IncomeExpenseTracker.model.BankAccount;
+import TeamHaLoi.IncomeExpenseTracker.model.UserBankAccountLink;
 import TeamHaLoi.IncomeExpenseTracker.repository.UserAccountRepository;
+import TeamHaLoi.IncomeExpenseTracker.repository.UserBankAccountLinkRepository;
+import TeamHaLoi.IncomeExpenseTracker.repository.BankAccountRepository;
 import TeamHaLoi.IncomeExpenseTracker.exception.UserAccountNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import TeamHaLoi.IncomeExpenseTracker.security.PasswordUtil;
 import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Value;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -37,6 +42,28 @@ public class UserAccountController {
         return userAccountRepository.findById(userId)
                 .orElseThrow(() -> new UserAccountNotFoundException(userId));
     }
+
+    @Autowired
+    private UserBankAccountLinkRepository userBankAccountLinkRepository;
+
+    @Autowired
+    private BankAccountRepository bankAccountRepository;
+    @GetMapping("/{user_id}/bank_accounts")
+    public List<BankAccount> getUserBankAccounts(@PathVariable(value = "user_id") Integer userId)
+            throws UserAccountNotFoundException {
+
+        // Fetch all links for this user
+        List<UserBankAccountLink> links = userBankAccountLinkRepository.findByUserAccount_Id(userId);
+
+        // Fetch all bank accounts for these links
+        List<BankAccount> accounts = links.stream()
+                .map(link -> bankAccountRepository.findById(link.getBankAccount().getId())
+                        .orElseThrow(() -> new RuntimeException("Bank Account not found: " + link.getBankAccount().getId())))
+                .collect(Collectors.toList());
+
+        return accounts;
+    }
+
 
     // Update a UserAccount
     @PutMapping("/{id}")
