@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.HashMap;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
@@ -29,12 +31,18 @@ public class AuthController {
     // Login API
     @PostMapping("/user_login")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginDto loginDto) {
-        // Define the user variable
-        boolean auth = authService.authenticateUser(loginDto);
+        UserAccount user = authService.authenticateUser(loginDto);
 
-        if(auth) {
+        if(user != null) {
             System.out.println("Authentication Successful");
-            return ResponseEntity.ok("User authenticated successfully");
+
+            // Creating a map to store response data
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "User authenticated successfully");
+            response.put("userId", user.getId());
+
+            // Returning map as response
+            return ResponseEntity.ok(response);
         } else {
             System.out.println("Authentication Failed");
             return ResponseEntity.status(401).body("Authentication failed");
@@ -46,8 +54,10 @@ public class AuthController {
     public ResponseEntity<String> register(@RequestBody RegisterDto registerDto){
         UserAccount user = authService.register(registerDto);
         if(user != null) {
+            System.out.println("User creation Successful");
             return ResponseEntity.ok("User created successfully");
         } else {
+            System.out.println("User creation Failed");
             return ResponseEntity.status(401).body("User creation failed");
         }
     }

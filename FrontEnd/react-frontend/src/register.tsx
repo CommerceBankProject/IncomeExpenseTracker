@@ -9,6 +9,43 @@ function checkEmail(email: string): boolean{
   const emailFormat = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i ;
   return emailFormat.test(email);
 }
+/*=================================================
+Create the verification function here, the function will take arguments from the user input:
+  email, firstname, lastname, password, rePassword.
+
+The logic for verification (the way I do it) that I will have a:
+
+coust count: number = 0; 
+
+each time the input pass the verification count will adding 1 to it: like count++
+
+How to create function on typescript
+
+
+function inputVerification(email: string, firstname: string, ......): number {
+  if (firstname !== "" ) // if the firstname it not empty
+  {
+    count++;
+  }
+
+  else
+  {
+    alert("Error msg here")
+  }
+
+  do the same with other
+  For email check if the email is empty or not first then call the function checkEmail to check if it in the right format or not if yes then count++
+  if not the alert alert("Error msg here")
+
+  Password check if it empty or not, if not check if password === rePassword (note: in typescript equal: ===)
+  if password === rePassword then count++, not then alert msg
+
+
+  return count;
+}
+
+go inside the registerPage to check the next step
+=================================================*/
 
 function registerPage() {
   
@@ -19,20 +56,33 @@ function registerPage() {
     const [rePassword, setRePassword] = useState("");
     async function save(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         event.preventDefault();
-        if (password != rePassword)
-        {
 
-           return;
-        }
+       /*
+       call out the verification function here with the input for the argument are: email, firstname, ......
+
+       check if the function return < 4 then we dont do the register, we will return nothing. 
+
+       if (call the function and check if < 4 here)
+       {
+         if it true
+         return;
+
+       }
+
+       test it and finish it b4 Sunday (or I will murder you). Peace out.
+       
+       */
 
         try {
           await axios.post("http://localhost:8081/auth/user_register", {
-          firstname: firstname,
-          lastname: lastname,
-          email: email,
-          password: password,
-          rePassword: rePassword,
-          });
+          "firstName": firstname,
+          "lastName": lastname,
+          "email": email,
+          "password": password,
+          }, {
+        headers: {
+        'Content-Type': 'application/json'
+        }});
           alert("Employee Registation Successfully");
         } catch (err) {
           alert(err);

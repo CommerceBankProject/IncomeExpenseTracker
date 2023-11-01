@@ -10,4 +10,5 @@ public interface UserBankAccountLinkRepository extends JpaRepository<UserBankAcc
     List<UserBankAccountLink> findByUserAccount_Id(Integer userAccountId);
     List<UserBankAccountLink> findByBankAccount_Id(Integer bankAccountId);
 
+
 }

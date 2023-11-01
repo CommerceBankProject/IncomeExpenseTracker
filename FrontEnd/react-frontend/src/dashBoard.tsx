@@ -2,12 +2,16 @@ import { useEffect,useState } from "react";
 import BalancePage from "./balancePage";
 import "./dashBoard.css"
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import axios from "axios"; 
+import axios from "axios";
+import { useParams } from 'react-router-dom';
+
 
 function DashBoard() {
     const [activeComponent, setActiveComponent] = useState<'balancepage' | 'profile'>('balancepage');
+    const { userId } = useParams<{ userId: string }>();
 
-    const renderComponent = () => {
+
+        const renderComponent = () => {
         if (activeComponent === 'balancepage'){
             return <BalancePage />;
         }
@@ -20,17 +24,18 @@ function DashBoard() {
 
     const [userName, setUserName] = useState<String>('');
     useEffect(() => {
-        // Make a GET request to the backend API to fetch accountType and cardNumber
-        axios.get('api Request here') // Replace with the correct API endpoint
-          .then((response) => {
-            const { userName } = response.data;
-            setUserName(userName);
-            
-          })
-          .catch((error) => {
-            console.error('API request error', error);
-          });
-      }, []);
+        // Use the provided API endpoint with the userId
+        axios.get(`http://localhost:8081/user_accounts/${userId}`)
+        .then((response) => {
+        // Extract firstName and lastName from the response
+            const { firstName, lastName } = response.data;
+            // Set the userName state as the combination of firstName and lastName
+            setUserName(`${firstName} ${lastName}`);
+            })
+            .catch((error) => {
+        console.error('API request error', error);
+        });
+    }, [userId]);
 
 
 
@@ -73,7 +78,7 @@ function DashBoard() {
                 <div className="header--wrapper">
                     <div className="header--title">
                         <span>Welcome</span>
-                        <h2 id="userName">UserName</h2>
+                        <h2 id="userName">{userName}</h2>
                     </div>
                     <div className="user--infor">
                         <div className="search--box">

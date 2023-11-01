@@ -4,19 +4,16 @@ import DashBoard from './dashBoard';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
-
-function App(){
-
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/user_register" element={<RegisterPage />} />
-        <Route path="/home" element={<DashBoard />} />
-      </Routes>
-
-    </Router>
-  )
+function App() {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<LoginPage />} />
+                <Route path="/create-account" element={<RegisterPage />} />
+                <Route path="/dashBoard/:userId" element={<DashBoard />} />
+            </Routes>
+        </Router>
+);
 }
 
 export default App;

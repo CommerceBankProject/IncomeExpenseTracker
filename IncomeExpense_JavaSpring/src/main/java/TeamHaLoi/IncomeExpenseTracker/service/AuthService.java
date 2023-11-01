@@ -15,7 +15,7 @@ public class AuthService {
 
     @Autowired
     private UserAccountRepository userAccountRepository;
-    public boolean authenticateUser(LoginDto loginDto) {
+    public UserAccount authenticateUser(LoginDto loginDto) {
         // Log request data
         System.out.println("Authenticating User: " + loginDto.getEmail());
         UserAccount userAccount = userAccountRepository.findByEmail(loginDto.getEmail());
@@ -25,9 +25,9 @@ public class AuthService {
         System.out.println("Is Authenticated: " + isAuthenticated);
 
         if (userAccount != null) {
-            return hashedPassword.equals(userAccount.getPassword());
+            return userAccount;
         } else {
-            return false;
+            return null;
         }
     }
 
