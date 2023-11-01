@@ -15,7 +15,6 @@ public class AuthService {
 
     @Autowired
     private UserAccountRepository userAccountRepository;
-
     public boolean authenticateUser(LoginDto loginDto) {
         // Log request data
         System.out.println("Authenticating User: " + loginDto.getEmail());
@@ -32,9 +31,8 @@ public class AuthService {
         }
     }
 
-
-
     public UserAccount register(RegisterDto registerDto) {
+
         // Create a new user account
         UserAccount newUser = new UserAccount();
         newUser.setEmail(registerDto.getEmail());

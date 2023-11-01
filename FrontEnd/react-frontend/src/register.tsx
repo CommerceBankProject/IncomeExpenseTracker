@@ -10,65 +10,6 @@ function checkEmail(email: string): boolean{
   return emailFormat.test(email);
 }
 
-function validation(email: string, firstName: string, lastName: string, password: string, rePassword: string)
-{
-  let count: number = 0; 
-  if (checkEmail(email) && email !=="")
-  {
-    count++;
-  }
-
-  else
-  {
-    if (email === "")
-    {
-      alert("Please enter you email");
-    }
-
-    else
-    {
-      alert("Please enter a valid email");
-    }
-    //error
-  }
-
-  if (password === rePassword)
-  {
-    count++;
-  }
-
-  else
-  {
-    if (password === "")
-    {
-      alert("Plse enter your password");
-    }
-
-    else
-    {
-      alert("Both password have to be the same")
-    }
-  }
-
-  if (firstName !=="")
-  {
-    count++;
-  }
-  else{
-    alert("Plse enter your first name");
-  }
-
-  if (lastName !=="")
-  {
-    count++;
-
-  }else{
-    alert("Plse enter your last name");
-  }
-
-  return count;
-}
-
 function registerPage() {
   
     const [firstname, setFirstName] = useState("");
@@ -78,29 +19,21 @@ function registerPage() {
     const [rePassword, setRePassword] = useState("");
     async function save(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         event.preventDefault();
-
-        let checkInput: number = validation(email, firstname,lastname,password,rePassword);
-        
-        if (checkInput < 4)
+        if (password != rePassword)
         {
-          return;
+
+           return;
         }
 
         try {
-          const response = await axios.post("http://localhost:8080/auth/user_register", {
-          firstName: firstname,
-          lastName: lastname,
+          await axios.post("http://localhost:8081/auth/user_register", {
+          firstname: firstname,
+          lastname: lastname,
           email: email,
           password: password,
           rePassword: rePassword,
           });
-
-          if (response) {
-            toast.success("User created successfully"); // Display a confirmation message
-            alert("User data received successfully");
-        } else {
-            alert("User creation failed"); // Handle other response scenarios
-        }
+          alert("Employee Registation Successfully");
         } catch (err) {
           alert(err);
         }
@@ -113,7 +46,6 @@ function registerPage() {
             <p>Please fill in this form to create an account.</p>
             <hr></hr>
 
-            <form>
             <label><b>First Name</b></label>
             <input type="text" placeholder="First Name" name="firstname" id="firstname" required 
             
@@ -167,7 +99,6 @@ function registerPage() {
             <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
             <button type="submit" className="registerbtn" onClick={save}>Register</button>
-            </form>
         </div>
 
         <div className="container signin">

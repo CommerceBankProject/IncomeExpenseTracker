@@ -12,13 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import TeamHaLoi.IncomeExpenseTracker.security.PasswordUtil;
 import java.time.LocalDateTime;
+import org.springframework.beans.factory.annotation.Value;
+
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/user_accounts")  // Set the base URL for all endpoints in this controller ; localhost/user_accounts
 public class UserAccountController {
 
     @Autowired
     UserAccountRepository userAccountRepository;
+
 
     // Get All UserAccounts
     @GetMapping
@@ -26,11 +30,6 @@ public class UserAccountController {
         return userAccountRepository.findAll();
     }
 
-    // Create a new UserAccount
-    @PostMapping
-    public UserAccount createUserAccount(@Valid @RequestBody UserAccount userAccount) {
-        return userAccountRepository.save(userAccount);
-    }
 
     // Get a Single UserAccount
     @GetMapping("/{id}")

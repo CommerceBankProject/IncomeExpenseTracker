@@ -10,11 +10,13 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/bank_accounts")  // Set the base URL for all endpoints in this controller; localhost/bank_accounts
 public class BankAccountController {
 
     @Autowired
     BankAccountRepository bankAccountRepository;
+
 
     // Get All BankAccounts
     @GetMapping
