@@ -27,12 +27,14 @@ function registerPage() {
 
         try {
           await axios.post("http://localhost:8081/auth/user_register", {
-          firstname: firstname,
-          lastname: lastname,
-          email: email,
-          password: password,
-          rePassword: rePassword,
-          });
+          "firstName": firstname,
+          "lastName": lastname,
+          "email": email,
+          "password": password,
+          }, {
+        headers: {
+        'Content-Type': 'application/json'
+        }});
           alert("Employee Registation Successfully");
         } catch (err) {
           alert(err);
