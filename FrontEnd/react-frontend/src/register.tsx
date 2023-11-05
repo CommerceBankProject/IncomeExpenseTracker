@@ -17,13 +17,13 @@ function inputVerification(
   password: string,
   rePassword: string
 ): number {
-  if (!checkEmail(email)) {
-    return 1;
-  } 
-
   if (!email || !firstname || !lastname || !password || !rePassword) {
-    return 2;
+    return 1;
   }
+
+  if (!checkEmail(email)) {
+    return 2;
+  } 
 
   if (password != rePassword) {
     return 3;
@@ -45,17 +45,23 @@ function registerPage() {
         const verificationResult = inputVerification(email, firstname, lastname, password, rePassword);
 
         if (verificationResult === 1) {
-          toast.error("Invalid email format");
-        } 
-        
+          toast.error("Please fill in all fields", {
+            position: "top-right",
+          });
+        }
+
         else if (verificationResult === 2) {
-          toast.error("Please fill in all fields");
-        } 
+          toast.error("Invalid email format", {
+            position: "top-right",
+          });
+        }
         
         else if (verificationResult === 3) {
-          toast.error("Passwords do not match");
-        } 
-        
+          toast.error("Passwords do not match", {
+            position: "top-right",
+          });
+        }
+      
         else {
 
           try {
@@ -68,7 +74,7 @@ function registerPage() {
           headers: {
           'Content-Type': 'application/json'
           }});
-            alert("Employee Registation Successfully");
+            alert("Employee Registration Successful");
           } catch (err) {
             alert(err);
           }
@@ -76,7 +82,8 @@ function registerPage() {
       }
     
     return (
-        <div> 
+        <div>
+        <ToastContainer /> 
         <div className="container">
             <h1>Register</h1>
             <p>Please fill in this form to create an account.</p>

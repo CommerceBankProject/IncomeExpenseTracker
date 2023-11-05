@@ -1,4 +1,4 @@
-import RegisterPage from './register';
+import RegisterPage from './register.tsx';
 import LoginPage from './login';
 import DashBoard from './dashBoard';
 import React from 'react';
