@@ -10,6 +10,28 @@ function checkEmail(email: string): boolean{
   return emailFormat.test(email);
 }
 
+function inputVerification(
+  email: string,
+  firstname: string,
+  lastname: string,
+  password: string,
+  rePassword: string
+): number {
+  if (!email || !firstname || !lastname || !password || !rePassword) {
+    return 1;
+  }
+
+  if (!checkEmail(email)) {
+    return 2;
+  } 
+
+  if (password != rePassword) {
+    return 3;
+  }
+
+  return 0;
+}
+
 function registerPage() {
   
     const [firstname, setFirstName] = useState("");
@@ -19,30 +41,49 @@ function registerPage() {
     const [rePassword, setRePassword] = useState("");
     async function save(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         event.preventDefault();
-        if (password != rePassword)
-        {
 
-           return;
+        const verificationResult = inputVerification(email, firstname, lastname, password, rePassword);
+
+        if (verificationResult === 1) {
+          toast.error("Please fill in all fields", {
+            position: "top-right",
+          });
         }
 
-        try {
-          await axios.post("http://localhost:8081/auth/user_register", {
-          "firstName": firstname,
-          "lastName": lastname,
-          "email": email,
-          "password": password,
-          }, {
-        headers: {
-        'Content-Type': 'application/json'
-        }});
-          alert("Employee Registation Successfully");
-        } catch (err) {
-          alert(err);
+        else if (verificationResult === 2) {
+          toast.error("Invalid email format", {
+            position: "top-right",
+          });
+        }
+        
+        else if (verificationResult === 3) {
+          toast.error("Passwords do not match", {
+            position: "top-right",
+          });
+        }
+      
+        else {
+
+          try {
+            await axios.post("http://localhost:8081/auth/user_register", {
+            "firstName": firstname,
+            "lastName": lastname,
+            "email": email,
+            "password": password,
+            }, {
+          headers: {
+          'Content-Type': 'application/json'
+          }});
+            alert("Employee Registration Successful");
+          } catch (err) {
+            alert(err);
+          }
         }
       }
-  
+    
     return (
-        <div> 
+        <div>
+        <ToastContainer /> 
         <div className="container">
             <h1>Register</h1>
             <p>Please fill in this form to create an account.</p>

@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="202bebf2-736a-4e7e-90e7-a89e36ba660d" name="Changes" comment="login/register API">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrontEnd/react-frontend/src/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/react-frontend/src/login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrontEnd/react-frontend/src/register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/react-frontend/src/register.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/java/TeamHaLoi/IncomeExpenseTracker/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/java/TeamHaLoi/IncomeExpenseTracker/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/java/TeamHaLoi/IncomeExpenseTracker/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/java/TeamHaLoi/IncomeExpenseTracker/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/react-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/react-frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/react-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/react-frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/IncomeExpense_JavaSpring/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,7 +46,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/UMKC/Capstone/IncomeExpenseTracker/IncomeExpense_JavaSpring",
+    "last_opened_file_path": "/Users/dannguyen/Documents/CS451R",
     "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
   }
 }]]></component>
