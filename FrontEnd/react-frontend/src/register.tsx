@@ -10,6 +10,28 @@ function checkEmail(email: string): boolean{
   return emailFormat.test(email);
 }
 
+function inputVerification(
+  email: string,
+  firstname: string,
+  lastname: string,
+  password: string,
+  rePassword: string
+): number {
+  if (!checkEmail(email)) {
+    return 1;
+  } 
+
+  if (!email || !firstname || !lastname || !password || !rePassword) {
+    return 2;
+  }
+
+  if (password != rePassword) {
+    return 3;
+  }
+
+  return 0;
+}
+
 function registerPage() {
   
     const [firstname, setFirstName] = useState("");
@@ -19,95 +41,107 @@ function registerPage() {
     const [rePassword, setRePassword] = useState("");
     async function save(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         event.preventDefault();
-        if (password != rePassword)
-        {
 
-           return;
+        const verificationResult = inputVerification(email, firstname, lastname, password, rePassword);
+
+        if (verificationResult === 1) {
+          toast.error("Invalid email format");
+        } 
+        
+        else if (verificationResult === 2) {
+          toast.error("Please fill in all fields");
+        } 
+        
+        else if (verificationResult === 3) {
+          toast.error("Passwords do not match");
+        } 
+        
+        else {
+
+          try {
+            await axios.post("http://localhost:8081/auth/user_register", {
+            "firstName": firstname,
+            "lastName": lastname,
+            "email": email,
+            "password": password,
+            }, {
+          headers: {
+          'Content-Type': 'application/json'
+          }});
+            alert("Employee Registation Successfully");
+          } catch (err) {
+            alert(err);
+          }
         }
+    
+      return (
+          <div> 
+          <div className="container">
+              <h1>Register</h1>
+              <p>Please fill in this form to create an account.</p>
+              <hr></hr>
 
-        try {
-          await axios.post("http://localhost:8081/auth/user_register", {
-          "firstName": firstname,
-          "lastName": lastname,
-          "email": email,
-          "password": password,
-          }, {
-        headers: {
-        'Content-Type': 'application/json'
-        }});
-          alert("Employee Registation Successfully");
-        } catch (err) {
-          alert(err);
-        }
-      }
-  
-    return (
-        <div> 
-        <div className="container">
-            <h1>Register</h1>
-            <p>Please fill in this form to create an account.</p>
-            <hr></hr>
+              <label><b>First Name</b></label>
+              <input type="text" placeholder="First Name" name="firstname" id="firstname" required 
+              
+              value = {firstname}
+              onChange={(event) => {
+                  setFirstName(event.target.value);
+                }}
+              
+              />
 
-            <label><b>First Name</b></label>
-            <input type="text" placeholder="First Name" name="firstname" id="firstname" required 
-            
-            value = {firstname}
-            onChange={(event) => {
-                setFirstName(event.target.value);
-              }}
-            
-            />
+              <label><b>Last Name</b></label>
+              <input type="text" placeholder="Last Name" name="lastname" id="lastname" required 
+              
+              value = {lastname}
+              onChange={(event) => {
+                  setLastName(event.target.value);
+                }}
+              
+              />
 
-            <label><b>Last Name</b></label>
-            <input type="text" placeholder="Last Name" name="lastname" id="lastname" required 
-            
-            value = {lastname}
-            onChange={(event) => {
-                setLastName(event.target.value);
-              }}
-            
-            />
+              <label ><b>Email</b></label>
+              <input type="text" placeholder="Email" name="email" id="email" required 
+              
+              value = {email}
+              onChange={(event) => {
+                  setEmail(event.target.value);
+                }}
+              
+              />
 
-            <label ><b>Email</b></label>
-            <input type="text" placeholder="Email" name="email" id="email" required 
-            
-            value = {email}
-            onChange={(event) => {
-                setEmail(event.target.value);
-              }}
-            
-            />
+              <label><b>Password</b></label>
+              <input type="password" placeholder="Password" name="psw" id="psw" required 
+              
+              value = {password}
+              onChange={(event) => {
+                  setPassword(event.target.value);
+                }}
+              
+              />
 
-            <label><b>Password</b></label>
-            <input type="password" placeholder="Password" name="psw" id="psw" required 
-            
-            value = {password}
-            onChange={(event) => {
-                setPassword(event.target.value);
-              }}
-            
-            />
+              <label><b>Repeat Password</b></label>
+              <input type="password" placeholder="Repeat Password" name="rePassword" id="rePassword" required 
+              
+              value = {rePassword}
+              onChange={(event) => {
+                  setRePassword(event.target.value);
+                }}
+              
+              />
+              <hr></hr>
+              <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
-            <label><b>Repeat Password</b></label>
-            <input type="password" placeholder="Repeat Password" name="rePassword" id="rePassword" required 
-            
-            value = {rePassword}
-            onChange={(event) => {
-                setRePassword(event.target.value);
-              }}
-            
-            />
-            <hr></hr>
-            <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+              <button type="submit" className="registerbtn" onClick={save}>Register</button>
+          </div>
 
-            <button type="submit" className="registerbtn" onClick={save}>Register</button>
-        </div>
-
-        <div className="container signin">
-        <p>Already have an account? <Link to="/">Sign in</Link>.</p>
-        </div>
-        </div>
-    );
+          <div className="container signin">
+          <p>Already have an account? <Link to="/">Sign in</Link>.</p>
+          </div>
+          </div>
+      );
+    }
   }
   
   export default registerPage;
