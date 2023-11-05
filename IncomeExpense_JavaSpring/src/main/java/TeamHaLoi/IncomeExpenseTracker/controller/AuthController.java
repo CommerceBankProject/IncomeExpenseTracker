@@ -44,8 +44,11 @@ public class AuthController {
             // Returning map as response
             return ResponseEntity.ok(response);
         } else {
+            // Creating a map to store response data
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Authentication Failed");
             System.out.println("Authentication Failed");
-            return ResponseEntity.status(401).body("Authentication failed");
+            return ResponseEntity.ok(response);
         }
     }
 
