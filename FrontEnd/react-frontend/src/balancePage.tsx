@@ -7,8 +7,8 @@ import axios from 'axios';
 
 const balancePage: React.FC = () => {
     const [accountType, setAccountType] = useState<String>('');
-    const [cardNumber, setCardNumber] = useState<string>('');
-    const [amountValue, setAmountValue] = useState<number>(0);
+    const [accountNumber, setCardNumber] = useState<string>('');
+    const [balance, setAmountValue] = useState<number>(0);
 
     // Extracting the ID from the URL
     const { id } = useParams<{ id: string }>();
@@ -18,7 +18,7 @@ const balancePage: React.FC = () => {
         axios.get('http://localhost:8081/user_accounts/${id}/bank_accounts') // Replace with the correct API endpoint
           .then((response) => {
             const accounts = response.data;
-            const { accountType, cardNumber, amountValue } = accounts[0];
+            const { accountType, accountNumber, balance } = accounts[0];
             setAccountType(accountType);
             setCardNumber(accountNumber);
             setAmountValue(balance);
@@ -33,11 +33,11 @@ const balancePage: React.FC = () => {
         <div className="payment--card">
             <div className="amount">
                 <span className="title" id="accountType">Account type </span>
-                <span className="amount-value" id="amountValue">$500</span>
+                <span className="amount-value" id="balance">$500</span>
             </div>
             <i className="bi bi-currency-dollar"></i>
         </div>
-        <span className="card-detail" id="cardNumber">**** **** **** 1234</span>
+        <span className="card-detail" id="accountNumber">**** **** **** 1234</span>
     </div>
 
     
