@@ -22,9 +22,10 @@ public class AuthService {
         // Check and log the authentication result
         boolean isAuthenticated = userAccount != null;
         String hashedPassword = PasswordUtil.hashPassword(loginDto.getPassword(), userAccount.getSalt());
+        String correctPassword = userAccount.getPassword();
         System.out.println("Is Authenticated: " + isAuthenticated);
 
-        if (userAccount != null) {
+        if ((userAccount != null) && (correctPassword.equals(hashedPassword))) {
             return userAccount;
         } else {
             return null;
