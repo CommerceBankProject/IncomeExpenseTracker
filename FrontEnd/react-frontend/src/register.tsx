@@ -73,75 +73,75 @@ function registerPage() {
             alert(err);
           }
         }
+      }
     
-      return (
-          <div> 
-          <div className="container">
-              <h1>Register</h1>
-              <p>Please fill in this form to create an account.</p>
-              <hr></hr>
+    return (
+        <div> 
+        <div className="container">
+            <h1>Register</h1>
+            <p>Please fill in this form to create an account.</p>
+            <hr></hr>
 
-              <label><b>First Name</b></label>
-              <input type="text" placeholder="First Name" name="firstname" id="firstname" required 
-              
-              value = {firstname}
-              onChange={(event) => {
-                  setFirstName(event.target.value);
-                }}
-              
-              />
+            <label><b>First Name</b></label>
+            <input type="text" placeholder="First Name" name="firstname" id="firstname" required 
+            
+            value = {firstname}
+            onChange={(event) => {
+                setFirstName(event.target.value);
+              }}
+            
+            />
 
-              <label><b>Last Name</b></label>
-              <input type="text" placeholder="Last Name" name="lastname" id="lastname" required 
-              
-              value = {lastname}
-              onChange={(event) => {
-                  setLastName(event.target.value);
-                }}
-              
-              />
+            <label><b>Last Name</b></label>
+            <input type="text" placeholder="Last Name" name="lastname" id="lastname" required 
+            
+            value = {lastname}
+            onChange={(event) => {
+                setLastName(event.target.value);
+              }}
+            
+            />
 
-              <label ><b>Email</b></label>
-              <input type="text" placeholder="Email" name="email" id="email" required 
-              
-              value = {email}
-              onChange={(event) => {
-                  setEmail(event.target.value);
-                }}
-              
-              />
+            <label ><b>Email</b></label>
+            <input type="text" placeholder="Email" name="email" id="email" required 
+            
+            value = {email}
+            onChange={(event) => {
+                setEmail(event.target.value);
+              }}
+            
+            />
 
-              <label><b>Password</b></label>
-              <input type="password" placeholder="Password" name="psw" id="psw" required 
-              
-              value = {password}
-              onChange={(event) => {
-                  setPassword(event.target.value);
-                }}
-              
-              />
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Password" name="psw" id="psw" required 
+            
+            value = {password}
+            onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+            
+            />
 
-              <label><b>Repeat Password</b></label>
-              <input type="password" placeholder="Repeat Password" name="rePassword" id="rePassword" required 
-              
-              value = {rePassword}
-              onChange={(event) => {
-                  setRePassword(event.target.value);
-                }}
-              
-              />
-              <hr></hr>
-              <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+            <label><b>Repeat Password</b></label>
+            <input type="password" placeholder="Repeat Password" name="rePassword" id="rePassword" required 
+            
+            value = {rePassword}
+            onChange={(event) => {
+                setRePassword(event.target.value);
+              }}
+            
+            />
+            <hr></hr>
+            <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
-              <button type="submit" className="registerbtn" onClick={save}>Register</button>
-          </div>
+            <button type="submit" className="registerbtn" onClick={save}>Register</button>
+        </div>
 
-          <div className="container signin">
-          <p>Already have an account? <Link to="/">Sign in</Link>.</p>
-          </div>
-          </div>
-      );
-    }
+        <div className="container signin">
+        <p>Already have an account? <Link to="/">Sign in</Link>.</p>
+        </div>
+        </div>
+    );
   }
   
   export default registerPage;
