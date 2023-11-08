@@ -107,13 +107,17 @@ body{
 }
 
 .header--title{
-    color: rgba(113, 99, 186, 255);
+    color: green;
 }
 
 .user--infor{
     display: flex;
     align-items: center;
     gap: 1; 
+}
+
+.searchBox{
+    border-radius: 10px;
 }
 
 

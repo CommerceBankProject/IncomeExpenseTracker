@@ -1,0 +1,160 @@
+.card--container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.card--wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.main--title{
+    color: green;
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+
+.payment--card{
+    background-color: cornsilk;
+    border-radius: 10px;
+    padding: 1.2rem;
+    width: 450px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.5s ease-in-out;
+}
+
+.payment--card:hover {
+    transform: translateY(-5px);
+}
+
+.card--header{
+    display: flex ;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.amount{
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    font-size: 25px;
+    font-weight: 500;
+}
+.amount--value{
+    font-size: 20px;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: 600;
+}
+
+.icon{
+    color: white;
+    padding: 0.5rem;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    background: green;
+}
+
+.card-detail{
+    font-size: 18px;
+    color: gray;
+    letter-spacing: 2px;
+    font-family: "Courier New", Courier, monospace;
+}
+
+.action--card{
+    background-color: white;
+    border-radius: 10px;
+    padding: 1.2rem;
+    width: 200px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.5s ease-in-out;
+}
+
+.buttonDeposit{
+    background-color: green;
+    border-color: green;
+    color: white;
+}
+
+.buttonExpense{
+    background-color: green;
+    border-color: green;
+    color: white;
+}
+
+/****** tabular--weapper section ******/
+
+.tabular--wrapper{
+    background-color: white;
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.table-container{
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collpase;
+}
+
+thead{
+    background-color: green;
+    color: white;
+}
+
+th{
+    padding: 15px;
+    text-align: left;
+}
+
+tbody{
+    background: white;
+}
+
+td{
+    padding: 15px;
+    font-size: 14px;
+    color: black;
+}
+
+tr:nth-child(even) {
+    background-color: white;
+}
+
+tfoot{
+    background-color: whitesmoke;
+    font-size: bold;
+    color: white;
+}
+
+tfoot td {
+    padding: 15px;
+}
+
+.table-container button{
+    color: whi;
+    background-color: none;
+    cursor: pointer;
+}
+
+
+
+
+

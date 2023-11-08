@@ -29,16 +29,63 @@ const balancePage: React.FC = () => {
       }, [id]);
 
     return (
-    <div className="card--wrapper">
+    <div>  
+    <div className="card--container">
+      <h3 className="main--title">Today's data</h3>
+      <div className="card--wrapper">
         <div className="payment--card">
+          <div className="card--header">
             <div className="amount">
                 <span className="title" id="accountType">Account type </span>
                 <span className="amount-value" id="balance">$500</span>
             </div>
-            <i className="bi bi-currency-dollar"></i>
+            <i className="bi bi-currency-dollar icon"></i>
+            
         </div>
         <span className="card-detail" id="accountNumber">**** **** **** 1234</span>
+        </div>
+
+        <div className="action--card">
+        <button type="submit" className="buttonDeposit">Deposit</button>
+        <button type="submit" className="buttonExpense">Expense</button>
+        </div>
+     </div>
     </div>
+    <div className="tabular--wrapper">
+      <h3 className="main--title">Finance Data</h3>
+      <div className="table-container">
+        <table>
+          <thead>
+          <tr>
+            <th>Transaction Type</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Date</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                Expense
+              </td>
+              <td>
+                Food Supplies
+              </td>
+              <td>
+               $300.00
+              </td>
+              <td>
+                11-07-2023
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    </div>
+
+  
 
     
 )};

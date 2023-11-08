@@ -22,6 +22,7 @@ import "./login.css";
         event.preventDefault();
 
         if (!email || !password) {
+            
         if (errorCount < MAX_ERROR_COUNT) {
         toast.error("Please enter both email and password.", {
         position: "top-right",
@@ -48,10 +49,14 @@ import "./login.css";
         } else if (res.data.message === "User authenticated successfully") {
         toast.info("Login Success", {
         position: "top-right",
-        });
+        }
+        );
         const userId = res.data.userId;
         navigate(`/dashBoard/${userId}`);
-        } else {
+        } 
+        
+        
+        else {
         toast.error("Incorrect Email and Password not match", {
         position: "top-right",
         });

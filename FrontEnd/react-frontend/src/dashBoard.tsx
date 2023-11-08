@@ -83,18 +83,12 @@ function DashBoard() {
                     <div className="user--infor">
                         <div className="search--box">
                     
-                        <input type="text" placeholder="Search"/>
+                        <input type="text" placeholder="Search" className="searchBox"/>
                     </div>
                     <button type="submit" >Search</button>
                 </div>
             </div>
-
-            <div className="card--container">
-                <h3 className="main--title">Today's data</h3>
-                {renderComponent()}
-            </div>
-            
-               
+            {renderComponent()}  
         </div>
         </div>
     );
