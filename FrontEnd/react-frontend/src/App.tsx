@@ -8,7 +8,7 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<DashBoard />} />
+                <Route path="/" element={<LoginPage />} />
                 <Route path="/create-account" element={<RegisterPage />} />
                 <Route path="/dashBoard/:userId" element={<DashBoard />} />
             </Routes>
