@@ -4,13 +4,16 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 function checkEmail(email: string): boolean{
   const emailFormat = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i ;
   return emailFormat.test(email);
 }
 
+
 function inputVerification(
+  
   email: string,
   firstname: string,
   lastname: string,
@@ -33,7 +36,7 @@ function inputVerification(
 }
 
 function registerPage() {
-  
+    const navigate = useNavigate();
     const [firstname, setFirstName] = useState("");
     const [lastname, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -75,6 +78,7 @@ function registerPage() {
           'Content-Type': 'application/json'
           }});
             alert("Employee Registration Successful");
+            navigate(`/`);
           } catch (err) {
             alert(err);
           }

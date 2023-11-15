@@ -3,13 +3,18 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import "./balancePage.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import DepositPopup from './DepositPopup';
 import axios from 'axios';
+import ExpensePopup from "./ExpensePopup";
+
 
 const balancePage: React.FC = () => {
     const [accountType, setAccountType] = useState<String>('');
     const [accountNumber, setCardNumber] = useState<string>('');
     const [balance, setAmountValue] = useState<number>(0);
-
+    const [isDepositPopupOpen, setDepositPopupOpen] = useState(false);
+    const [isExpensePopupOpen, setExpensePopupOpen] = useState(false);
+    
     // Extracting the ID from the URL
     const { id } = useParams<{ id: string }>();
 
@@ -46,8 +51,10 @@ const balancePage: React.FC = () => {
         </div>
 
         <div className="action--card">
-        <button type="submit" className="buttonDeposit">Deposit</button>
-        <button type="submit" className="buttonExpense">Expense</button>
+        <button  className="buttonDeposit" onClick={() => setDepositPopupOpen(true)} >Deposit</button>
+        {isDepositPopupOpen && (<DepositPopup onClose={() => setDepositPopupOpen(false)} />)}
+        <button type="submit" className="buttonExpense" onClick={() => setExpensePopupOpen(true)}>Expense</button>
+        {isExpensePopupOpen && (<ExpensePopup onClose={() => setExpensePopupOpen(false)} />)}
         </div>
      </div>
     </div>
