@@ -6,6 +6,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import DepositPopup from './DepositPopup';
 import axios from 'axios';
 import ExpensePopup from "./ExpensePopup";
+import LinkAccount from "./linkAccount";
 
 
 const balancePage: React.FC = () => {
@@ -14,6 +15,7 @@ const balancePage: React.FC = () => {
     const [balance, setAmountValue] = useState<number>(0);
     const [isDepositPopupOpen, setDepositPopupOpen] = useState(false);
     const [isExpensePopupOpen, setExpensePopupOpen] = useState(false);
+    const [isLinkAccountPopupOpen, setLinkAccountPopupOpen] = useState(false);
     
     // Extracting the ID from the URL
     const { id } = useParams<{ id: string }>();
@@ -56,6 +58,21 @@ const balancePage: React.FC = () => {
         <button type="submit" className="buttonExpense" onClick={() => setExpensePopupOpen(true)}>Expense</button>
         {isExpensePopupOpen && (<ExpensePopup onClose={() => setExpensePopupOpen(false)} />)}
         </div>
+
+        <div className="action--card">
+        <button type="submit" className="buttonExpense" onClick={() => setLinkAccountPopupOpen(true)}>Link Account</button>
+        {isLinkAccountPopupOpen && (<LinkAccount onClose={() => setLinkAccountPopupOpen(false)} />)}
+        </div>
+
+        <div className="payment--card">
+          <div className="card--header">
+            <div className="amount">
+                <span className="title" id="accountType">Account </span>
+                <span className="amount-value" id="balance">$500</span>
+            </div>
+        </div>
+        </div>
+
      </div>
     </div>
     <div className="tabular--wrapper">

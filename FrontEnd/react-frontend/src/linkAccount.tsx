@@ -1,7 +1,7 @@
 
 import axios from "axios";
 import React, { useState } from "react";
-import "./DepositPopup.css";
+import "./linkAccount.css";
 
 interface DepositPopupProps {
   onClose: () => void;
@@ -31,8 +31,8 @@ const DepositPopup: React.FC<DepositPopupProps> = ({ onClose }) => {
   };
 
   return (
-    <div className="deposit-popup">
-      <div className="popup-content">
+    <div className="account-popup">
+      <div className="accountPopup-content">
         <h3> Bank Name: </h3>
         <input type="text" 
         value={bankName}
