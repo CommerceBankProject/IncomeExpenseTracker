@@ -16,6 +16,7 @@ const balancePage: React.FC = () => {
     const [isDepositPopupOpen, setDepositPopupOpen] = useState(false);
     const [isExpensePopupOpen, setExpensePopupOpen] = useState(false);
     const [isLinkAccountPopupOpen, setLinkAccountPopupOpen] = useState(false);
+    const [items, setItems] = useState<any[]>([]);
     
     // Extracting the ID from the URL
     const { id } = useParams<{ id: string }>();
@@ -59,20 +60,32 @@ const balancePage: React.FC = () => {
         {isExpensePopupOpen && (<ExpensePopup onClose={() => setExpensePopupOpen(false)} />)}
         </div>
 
+
+        <div className="action--displaybox">
+          <div className="action--textfile">
+          
+            <div className="select--multiple">
+              <select id="multi-select" multiple>
+                <option value="Option 1">Option 1</option>
+                <option value="Option 2">Option 2</option>
+                <option value="Option 3">Option 3</option>
+                <option value="Option 4">Option 4</option>
+                <option value="Option 5">Option 5</option>
+                
+              </select>
+              <span className="focus"></span>
+            </div>
+            
+          </div>
+        </div>
+
+
         <div className="action--card">
         <button type="submit" className="buttonExpense" onClick={() => setLinkAccountPopupOpen(true)}>Link Account</button>
-        {isLinkAccountPopupOpen && (<LinkAccount onClose={() => setLinkAccountPopupOpen(false)} />)}
+            {isLinkAccountPopupOpen && (<LinkAccount onClose={() => setLinkAccountPopupOpen(false)} />)}
         </div>
 
-        <div className="payment--card">
-          <div className="card--header">
-            <div className="amount">
-                <span className="title" id="accountType">Account </span>
-                <span className="amount-value" id="balance">$500</span>
-            </div>
-        </div>
-        </div>
-
+        
      </div>
     </div>
     <div className="tabular--wrapper">
