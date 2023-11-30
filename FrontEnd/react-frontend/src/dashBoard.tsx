@@ -1,5 +1,7 @@
 import { useEffect,useState } from "react";
 import BalancePage from "./balancePage";
+import UserProfile from "./UserProfile";
+import UserStatistic from "./statisticPage";
 import "./dashBoard.css"
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import axios from "axios";
@@ -8,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 
 function DashBoard() {
-    const [activeComponent, setActiveComponent] = useState<'balancepage' | 'profile'>('balancepage');
+    const [activeComponent, setActiveComponent] = useState<'balancepage' | 'profile' | 'statistic'>('balancepage');
     const { userId } = useParams<{ userId: string }>();
 
 
@@ -17,9 +19,14 @@ function DashBoard() {
             return <BalancePage />;
         }
 
-        else
+        else if (activeComponent === 'profile')
         {
-            return null;
+            return <UserProfile />;
+        }
+
+        else if (activeComponent === 'statistic')
+        {
+            return <UserStatistic />;
         }
     }
 
@@ -53,14 +60,14 @@ function DashBoard() {
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="#" onClick={() => setActiveComponent('profile')}>
                             <i className="bi bi-person-lines-fill"></i>
                             <span>Profile</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="#" onClick={() => setActiveComponent('statistic')}>
                             <i className="bi bi-card-list"></i>
                             <span>Statistic</span>
                         </a>
@@ -73,9 +80,9 @@ function DashBoard() {
                         </a>
                     </li>
                 </ul>
-            </div>
+                </div>
 
-            <div className="main--content">
+             <div className="main--content">
                 <div className="header--wrapper">
                     <div className="header--title">
                         <span>Welcome</span>
@@ -83,14 +90,13 @@ function DashBoard() {
                     </div>
                     <div className="user--infor">
                         <div className="search--box">
-                    
-                        <input type="text" placeholder="Search" className="searchBox"/>
-                    </div>
+                           <input type="text" placeholder="Search" className="searchBox"/>
+                        </div>
                     <button type="submit" >Search</button>
                 </div>
             </div>
             {renderComponent()}  
-        </div>
+         </div>
         </div>
     );
 }

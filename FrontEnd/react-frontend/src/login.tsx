@@ -100,10 +100,10 @@ import "./login.css";
                                 }}
 
                                 /><br /><br />
-                                <a href="url">forget password</a> <br /><br />
+                                <a href="url">forgot password</a> <br /><br />
                                 <input type="checkbox" id="rememberEmail" name="rememberEmail" value="reEmail" />
                                 <label> Remember my Email ID</label><br /><br />
-                                <button type="submit" onClick={(event) => login(event)}>Sign In</button><br /><br />
+                                <button type="submit" onClick={(event) => login(event)} className="submit--button">Sign In</button><br /><br />
                                 <Link to="/create-account">Create an account</Link>
                             </section>
                         </section>

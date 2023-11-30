@@ -44,13 +44,13 @@ const balancePage: React.FC = () => {
         <div className="payment--card">
           <div className="card--header">
             <div className="amount">
-                <span className="title" id="accountType">Account type </span>
-                <span className="amount-value" id="balance">$500</span>
+                <span className="title" id="accountType" >{accountType} </span>
+                <span className="amount-value" id="balance">$ {balance}</span>
             </div>
             <i className="bi bi-currency-dollar icon"></i>
             
         </div>
-        <span className="card-detail" id="accountNumber">**** **** **** 1234</span>
+        <span className="card-detail" id="accountNumber">{accountNumber}</span>
         </div>
 
         <div className="action--card">

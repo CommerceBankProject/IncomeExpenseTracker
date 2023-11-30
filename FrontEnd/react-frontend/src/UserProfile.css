@@ -1,0 +1,33 @@
+.card--container {
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.5s ease-in-out;
+    display: flex;
+    flex-wrap: wrap;
+    
+  
+}
+
+.text--container {
+  width: 300px;
+  border-radius: 10px;
+  margin: 0 150px; 
+}
+
+.text--container input {
+  font-size: medium;
+}
+
+.text--container button {
+  background-color: green;
+  color: aliceblue;
+  margin:0 10px;
+}
+
+
+
+
+
