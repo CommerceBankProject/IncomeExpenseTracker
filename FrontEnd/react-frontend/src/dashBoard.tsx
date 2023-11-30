@@ -4,6 +4,7 @@ import "./dashBoard.css"
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import axios from "axios";
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 function DashBoard() {
@@ -68,7 +69,7 @@ function DashBoard() {
                     <li className="logout">
                         <a href="#">
                             <i className="bi bi-door-closed"></i>
-                            <span>Logout</span>
+                            <span><Link to="/">Logout</Link></span>
                         </a>
                     </li>
                 </ul>

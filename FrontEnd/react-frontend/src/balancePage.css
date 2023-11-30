@@ -154,7 +154,33 @@ tfoot td {
     cursor: pointer;
 }
 
+.select--multiple{
+    background-color: cornsilk;
+    border-radius: 10px;
+    padding: 1.2rem;
+    width: 350px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.5s ease-in-out;
 
+}
 
+.select--multiple select{
+    width: 300px;
+    height: 160px;
+    border-radius: 10px;
+    background-color: cornsilk;
+    border-color: antiquewhite;
+    
+}
+
+.select--multiple option{
+    font-size: 18px;
+    color: black;
+    letter-spacing: 2px;
+    font-family: "Courier New", Courier, monospace;
+}
 
 

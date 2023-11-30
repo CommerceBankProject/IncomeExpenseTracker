@@ -3,13 +3,21 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import "./balancePage.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import DepositPopup from './DepositPopup';
 import axios from 'axios';
+import ExpensePopup from "./ExpensePopup";
+import LinkAccount from "./linkAccount";
+
 
 const balancePage: React.FC = () => {
     const [accountType, setAccountType] = useState<String>('');
     const [accountNumber, setCardNumber] = useState<string>('');
     const [balance, setAmountValue] = useState<number>(0);
-
+    const [isDepositPopupOpen, setDepositPopupOpen] = useState(false);
+    const [isExpensePopupOpen, setExpensePopupOpen] = useState(false);
+    const [isLinkAccountPopupOpen, setLinkAccountPopupOpen] = useState(false);
+    const [items, setItems] = useState<any[]>([]);
+    
     // Extracting the ID from the URL
     const { id } = useParams<{ id: string }>();
 
@@ -46,9 +54,38 @@ const balancePage: React.FC = () => {
         </div>
 
         <div className="action--card">
-        <button type="submit" className="buttonDeposit">Deposit</button>
-        <button type="submit" className="buttonExpense">Expense</button>
+        <button  className="buttonDeposit" onClick={() => setDepositPopupOpen(true)} >Deposit</button>
+        {isDepositPopupOpen && (<DepositPopup onClose={() => setDepositPopupOpen(false)} />)}
+        <button type="submit" className="buttonExpense" onClick={() => setExpensePopupOpen(true)}>Expense</button>
+        {isExpensePopupOpen && (<ExpensePopup onClose={() => setExpensePopupOpen(false)} />)}
         </div>
+
+
+        <div className="action--displaybox">
+          <div className="action--textfile">
+          
+            <div className="select--multiple">
+              <select id="multi-select" multiple>
+                <option value="Option 1">Option 1</option>
+                <option value="Option 2">Option 2</option>
+                <option value="Option 3">Option 3</option>
+                <option value="Option 4">Option 4</option>
+                <option value="Option 5">Option 5</option>
+                
+              </select>
+              <span className="focus"></span>
+            </div>
+            
+          </div>
+        </div>
+
+
+        <div className="action--card">
+        <button type="submit" className="buttonExpense" onClick={() => setLinkAccountPopupOpen(true)}>Link Account</button>
+            {isLinkAccountPopupOpen && (<LinkAccount onClose={() => setLinkAccountPopupOpen(false)} />)}
+        </div>
+
+        
      </div>
     </div>
     <div className="tabular--wrapper">
