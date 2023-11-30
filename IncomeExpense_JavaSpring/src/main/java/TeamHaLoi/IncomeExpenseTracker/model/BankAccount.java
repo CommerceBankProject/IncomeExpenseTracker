@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import TeamHaLoi.IncomeExpenseTracker.model.UserBankAccountLink;
 import java.util.Set;
 import jakarta.persistence.OneToMany;
-
+import java.math.BigDecimal;
 
 
 
@@ -33,7 +33,7 @@ public class BankAccount {
     private String accountType;
 
     @Column(name = "balance")
-    private Double balance;
+    private BigDecimal balance;
 
     @Column(name = "status")
     private String status;
@@ -52,7 +52,7 @@ public class BankAccount {
         super();
     }
 
-    public BankAccount(String accountNumber, String bankName, String accountType, Double balance, String status) {
+    public BankAccount(String accountNumber, String bankName, String accountType, BigDecimal balance, String status) {
         this.accountNumber = accountNumber;
         this.bankName = bankName;
         this.accountType = accountType;
@@ -96,11 +96,11 @@ public class BankAccount {
         this.accountType = accountType;
     }
 
-    public Double getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(Double balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
