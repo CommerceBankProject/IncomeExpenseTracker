@@ -32,10 +32,11 @@ public class TransactionController {
         return ResponseEntity.ok(transactionService.getTransactionById(transactionId));
     }
 
-    @GetMapping("/account/{bankAccountId}")
-    public List<Transaction> getTransactionsByBankAccountId(@PathVariable(value = "bankAccountId") Integer bankAccountId) {
-        return transactionService.getTransactionsByBankAccountId(bankAccountId);
+    @GetMapping("/account/{accountNumber}")
+    public List<Transaction> getTransactionsByAccountNumber(@PathVariable(value = "accountNumber") String accountNumber) {
+        return transactionService.getTransactionByAccountNumber(accountNumber);
     }
+
 
     @GetMapping("/type/{type}")
     public List<Transaction> getTransactionsByType(@PathVariable(value = "type") String type) {
@@ -49,10 +50,6 @@ public class TransactionController {
         return transactionService.getTransactionsByDateRange(start, end);
     }
 
-    @GetMapping("/category/{categoryId}")
-    public List<Transaction> getTransactionsByCategoryId(@PathVariable(value = "categoryId") Integer categoryId) {
-        return transactionService.getTransactionsByCategoryId(categoryId);
-    }
 
     @GetMapping("/recurring/{recurring}")
     public List<Transaction> getTransactionsByRecurring(@PathVariable(value = "recurring") Boolean recurring) {
@@ -74,11 +71,6 @@ public class TransactionController {
         return transactionService.createTransaction(transaction);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Transaction> updateTransaction(@PathVariable(value = "id") Integer transactionId,
-                                                         @RequestBody Transaction transactionDetails) {
-        return ResponseEntity.ok(transactionService.updateTransaction(transactionId, transactionDetails));
-    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTransaction(@PathVariable(value = "id") Integer transactionId) {

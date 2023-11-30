@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import jakarta.validation.Valid;
 import java.util.List;
+import java.math.BigDecimal;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")

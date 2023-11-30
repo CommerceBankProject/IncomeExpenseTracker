@@ -12,16 +12,13 @@ import java.time.LocalDate;
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Integer> {
     // Find transactions by bank account ID
-    List<Transaction> findByBankAccountId(Integer bankAccountId);
+    List<Transaction> findByAccountNumber(String accountNumber);
 
     // Find transactions by type
     List<Transaction> findByType(String type);
 
     // Find transactions within a certain date range
     List<Transaction> findByDateBetween(LocalDate startDate, LocalDate endDate);
-
-    // Find transactions by category ID
-    List<Transaction> findByCategoryId(Integer categoryId);
 
     // Find transactions by recurring status
     List<Transaction> findByRecurring(Boolean recurring);
