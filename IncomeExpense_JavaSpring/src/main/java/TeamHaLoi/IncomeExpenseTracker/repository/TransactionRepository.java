@@ -15,26 +15,20 @@ public interface TransactionRepository extends JpaRepository<Transaction, Intege
     List<Transaction> findByAccountNumber(String accountNumber);
 
     // Find transactions by type
-    List<Transaction> findByType(String type);
+    List<Transaction> findByAccountNumberAndType(String accountNumber, String type);
 
-    // Find transactions within a certain date range
-    List<Transaction> findByDateBetween(LocalDate startDate, LocalDate endDate);
 
     // Find transactions by recurring status
-    List<Transaction> findByRecurring(Boolean recurring);
+    List<Transaction> findByAccountNumberAndRecurring(String accountNumber, Boolean recurring);
 
     // Find transactions with an amount greater than a specified value
-    List<Transaction> findByAmountGreaterThan(BigDecimal amount);
+    List<Transaction> findByAccountNumberAndAmountGreaterThan(String accountNumber, BigDecimal amount);
+
+    List<Transaction> findByAccountNumberAndDateBetween(String accountNumber, LocalDate startDate, LocalDate endDate);
 
     // Custom query using JPQL for finding transactions with a specific description pattern
-    @Query("SELECT t FROM Transaction t WHERE t.description LIKE %:description%")
-    List<Transaction> findByDescriptionContaining(String description);
+    @Query("SELECT t FROM Transaction t WHERE t.description LIKE :description AND t.accountNumber LIKE :accountNumber")
+    List<Transaction> findByDescriptionContainingAndAccountNumberLike(String description, String accountNumber);
 
-    // Custom query to find all transactions ordered by amount in descending order
-    @Query("SELECT t FROM Transaction t ORDER BY t.amount DESC")
-    List<Transaction> findAllOrderByAmountDesc();
 
-    // Custom query using native SQL
-    @Query(value = "SELECT * FROM transactions WHERE amount >= :amount", nativeQuery = true)
-    List<Transaction> findByAmountGreaterThanOrEqualNative(BigDecimal amount);
 }

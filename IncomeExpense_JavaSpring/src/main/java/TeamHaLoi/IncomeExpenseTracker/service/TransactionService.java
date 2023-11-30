@@ -43,25 +43,28 @@ public class TransactionService {
         return transactionRepository.findByAccountNumber(accountNumber);
     }
 
-    public List<Transaction> getTransactionsByType(String type) {
-        return transactionRepository.findByType(type);
-    }
-
-    public List<Transaction> getTransactionsByDateRange(LocalDate startDate, LocalDate endDate) {
-        return transactionRepository.findByDateBetween(startDate, endDate);
+    public List<Transaction> getTransactionsByAccountNumberAndType(String accountNumber, String type) {
+        return transactionRepository.findByAccountNumberAndType(accountNumber, type);
     }
 
 
-    public List<Transaction> getTransactionsByRecurring(Boolean recurring) {
-        return transactionRepository.findByRecurring(recurring);
+    public List<Transaction> getTransactionsByAccountNumberAndDateRange(String accountNumber, LocalDate startDate, LocalDate endDate) {
+        return transactionRepository.findByAccountNumberAndDateBetween(accountNumber, startDate, endDate);
     }
 
-    public List<Transaction> getTransactionsByAmountGreaterThan(BigDecimal amount) {
-        return transactionRepository.findByAmountGreaterThan(amount);
+
+    public List<Transaction> getTransactionsByRecurring(String accountNumber, Boolean recurring) {
+        return transactionRepository.findByAccountNumberAndRecurring(accountNumber, recurring);
     }
 
-    public List<Transaction> getTransactionsByDescriptionContaining(String description) {
-        return transactionRepository.findByDescriptionContaining(description);
+    public List<Transaction> getTransactionsByAmountGreaterThan(String accountNumber, BigDecimal amount) {
+        return transactionRepository.findByAccountNumberAndAmountGreaterThan(accountNumber, amount);
+    }
+
+    public List<Transaction> getTransactionsByDescriptionContaining(String accountNumber, String description) {
+        String formattedDescription = "%" + description + "%";
+        String formattedAccountNumber = "%" + accountNumber + "%";
+        return transactionRepository.findByDescriptionContainingAndAccountNumberLike(formattedDescription, formattedAccountNumber);
     }
 
     public Transaction createTransaction(Transaction transaction) {
