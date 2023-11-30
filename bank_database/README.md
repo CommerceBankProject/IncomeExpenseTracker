@@ -58,7 +58,7 @@ Logs of deposits or withdrawals as incomes or expenses.
 
 **Columns**:
 - `id`: Unique identifier for the transaction.
-- `bank_account_id`: Foreign key to the `bank_account` table.
+- `account_number`: Foreign key to the `bank_account` table.
 - `amount`: Amount involved in the transaction.
 - `transaction_type`: Type of transaction - income or expense.
 - `category`: Category for expenses (e.g., food, bills).
@@ -69,23 +69,12 @@ Logs of deposits or withdrawals as incomes or expenses.
 
 ---
 
-### 5. `transaction_categories`:
-This table stores the different categories for transactions.
-
-**Columns**:
-- `id`: Unique identifier for the category.
-- `name`: Name of the category (e.g., Groceries, Utilities).
-- `created_at`: Date and time when the category was added.
-- `updated_at`: Date and time when the category data was last updated.
-
----
-
-### 6. `budgets_goals`:
+### 5. `budgets_goals`:
 Information about users' budget and financial goals.
 
 **Columns**:
 - `id`: Unique identifier.
-- `bank_account_id`: Foreign key to the `bank_account` table.
+- `account_number`: Foreign key to the `bank_account` table.
 - `amount`: Amount set for the budget or goal.
 - `description`: Description or purpose of the budget/goal.
 - `type`: Specifies if it's a budget or a goal.
@@ -100,7 +89,7 @@ Generated reports comparing income and expenses.
 
 **Columns**:
 - `id`: Unique identifier for the report.
-- `bank_account_id`: Foreign key referencing the `bank_account` table.
+- `account_number`: Foreign key referencing the `bank_account` table.
 - `generated_date`: Date when the report was generated.
 - `type`: Type of the report.
 - `file_link`: Link to access the generated report file.
