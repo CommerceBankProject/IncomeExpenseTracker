@@ -22,8 +22,8 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "bank_account_id", nullable = false)
-    private Integer bankAccountId;
+    @Column(name = "account_number", nullable = false)
+    private String accountNumber;
 
     @Column(nullable = false)
     private String type;
@@ -33,8 +33,6 @@ public class Transaction {
 
     private String description;
 
-    @Column(name = "category_id")
-    private Integer categoryId;
 
     @Column(nullable = false)
     private LocalDate date;
@@ -53,9 +51,8 @@ public class Transaction {
         return id;
     }
 
-    public Integer getBankAccountId() {
-        return bankAccountId;
-    }
+    public String getAccountNumber() {return accountNumber; }
+
 
     public String getType() {
         return type;
@@ -69,9 +66,6 @@ public class Transaction {
         return description;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
-    }
 
     public LocalDate getDate() {
         return date;
@@ -94,8 +88,9 @@ public class Transaction {
         this.id = id;
     }
 
-    public void setBankAccountId(Integer bankAccountId) {
-        this.bankAccountId = bankAccountId;
+
+    public void setAccountNumber(String accountNumber){
+        this.accountNumber = accountNumber;
     }
 
     public void setType(String type) {
@@ -110,9 +105,6 @@ public class Transaction {
         this.description = description;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
 
     public void setDate(LocalDate date) {
         this.date = date;

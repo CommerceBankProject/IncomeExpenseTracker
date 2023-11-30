@@ -76,6 +76,7 @@ public class UserBankAccountLinkController {
         newAccount.setStatus("active");
         newAccount.setAccountType(request.getAccountType().toUpperCase());
         newAccount.setBalance(request.getInitialBalance());
+        newAccount.setCreatedAt(LocalDateTime.now());
         // Set other fields like creation and update timestamps if necessary
         BankAccount savedAccount = bankAccountRepository.save(newAccount);
 

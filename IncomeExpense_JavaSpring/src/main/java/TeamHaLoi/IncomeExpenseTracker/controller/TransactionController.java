@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api/transactions")
 public class TransactionController {
 
@@ -32,41 +33,46 @@ public class TransactionController {
         return ResponseEntity.ok(transactionService.getTransactionById(transactionId));
     }
 
-    @GetMapping("/account/{bankAccountId}")
-    public List<Transaction> getTransactionsByBankAccountId(@PathVariable(value = "bankAccountId") Integer bankAccountId) {
-        return transactionService.getTransactionsByBankAccountId(bankAccountId);
+    @GetMapping("/account/{accountNumber}")
+    public List<Transaction> getTransactionsByAccountNumber(@PathVariable(value = "accountNumber") String accountNumber) {
+        return transactionService.getTransactionByAccountNumber(accountNumber);
     }
 
-    @GetMapping("/type/{type}")
-    public List<Transaction> getTransactionsByType(@PathVariable(value = "type") String type) {
-        return transactionService.getTransactionsByType(type);
+    @GetMapping("/account/{accountNumber}/type/{type}")
+    public List<Transaction> getTransactionsByAccountNumberAndType(
+            @PathVariable(value = "accountNumber") String accountNumber,
+            @PathVariable(value = "type") String type) {
+        return transactionService.getTransactionsByAccountNumberAndType(accountNumber, type);
     }
 
-    @GetMapping("/date-range")
-    public List<Transaction> getTransactionsByDateRange(
+    @GetMapping("/account/{accountNumber}/date-range")
+    public List<Transaction> getTransactionsByAccountNumberAndDateRange(
+            @PathVariable(value = "accountNumber") String accountNumber,
             @RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
             @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end) {
-        return transactionService.getTransactionsByDateRange(start, end);
+        return transactionService.getTransactionsByAccountNumberAndDateRange(accountNumber, start, end);
     }
 
-    @GetMapping("/category/{categoryId}")
-    public List<Transaction> getTransactionsByCategoryId(@PathVariable(value = "categoryId") Integer categoryId) {
-        return transactionService.getTransactionsByCategoryId(categoryId);
+
+    @GetMapping("/account/{accountNumber}/recurring/{recurring}")
+    public List<Transaction> getTransactionsByRecurring(
+            @PathVariable(value = "accountNumber") String accountNumber,
+            @PathVariable(value = "recurring") Boolean recurring) {
+        return transactionService.getTransactionsByRecurring(accountNumber, recurring);
     }
 
-    @GetMapping("/recurring/{recurring}")
-    public List<Transaction> getTransactionsByRecurring(@PathVariable(value = "recurring") Boolean recurring) {
-        return transactionService.getTransactionsByRecurring(recurring);
+    @GetMapping("/account/{accountNumber}/amount-greater-than/{amount}")
+    public List<Transaction> getTransactionsByAmountGreaterThan(
+            @PathVariable(value = "accountNumber") String accountNumber,
+            @PathVariable(value = "amount") BigDecimal amount) {
+        return transactionService.getTransactionsByAmountGreaterThan(accountNumber, amount);
     }
 
-    @GetMapping("/amount-greater-than/{amount}")
-    public List<Transaction> getTransactionsByAmountGreaterThan(@PathVariable(value = "amount") BigDecimal amount) {
-        return transactionService.getTransactionsByAmountGreaterThan(amount);
-    }
-
-    @GetMapping("/search/description")
-    public List<Transaction> getTransactionsByDescriptionContaining(@RequestParam("keyword") String keyword) {
-        return transactionService.getTransactionsByDescriptionContaining(keyword);
+    @GetMapping("/account/{accountNumber}/search/{descr}")
+    public List<Transaction> getTransactionsByDescriptionContaining(
+            @PathVariable(value = "accountNumber") String accountNumber,
+            @PathVariable(value = "descr") String descr) {
+        return transactionService.getTransactionsByDescriptionContaining(accountNumber, descr);
     }
 
     @PostMapping
@@ -74,11 +80,6 @@ public class TransactionController {
         return transactionService.createTransaction(transaction);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Transaction> updateTransaction(@PathVariable(value = "id") Integer transactionId,
-                                                         @RequestBody Transaction transactionDetails) {
-        return ResponseEntity.ok(transactionService.updateTransaction(transactionId, transactionDetails));
-    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTransaction(@PathVariable(value = "id") Integer transactionId) {

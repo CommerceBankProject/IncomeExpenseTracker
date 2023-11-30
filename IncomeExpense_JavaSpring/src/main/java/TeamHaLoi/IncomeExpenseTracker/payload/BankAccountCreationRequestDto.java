@@ -1,18 +1,19 @@
 package TeamHaLoi.IncomeExpenseTracker.payload;
+import java.math.BigDecimal;
 
 public class BankAccountCreationRequestDto {
     private Integer userId;
     private String accountNumber;
     private String bankName;
     private String accountType;
-    private Double initialBalance;
+    private BigDecimal initialBalance;
     private String accountAlias;
 
     // Constructors
     public BankAccountCreationRequestDto() {
     }
 
-    public BankAccountCreationRequestDto(Integer userId, String accountNumber, String bankName, String accountType, Double initialBalance, String accountAlias) {
+    public BankAccountCreationRequestDto(Integer userId, String accountNumber, String bankName, String accountType, BigDecimal initialBalance, String accountAlias) {
         this.userId = userId;
         this.accountNumber = accountNumber;
         this.bankName = bankName;
@@ -55,11 +56,11 @@ public class BankAccountCreationRequestDto {
         return accountType;
 
     }
-    public Double getInitialBalance() {
+    public BigDecimal getInitialBalance() {
         return initialBalance;
     }
 
-    public void setInitialBalance(Double initialBalance) {
+    public void setInitialBalance(BigDecimal initialBalance) {
         this.initialBalance = initialBalance;
     }
 

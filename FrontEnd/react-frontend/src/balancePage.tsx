@@ -8,49 +8,72 @@ import axios from 'axios';
 import ExpensePopup from "./ExpensePopup";
 import LinkAccount from "./linkAccount";
 
+// BalancePage component
+interface BalancePageProps {
+    userId: string;
+}
 
-const balancePage: React.FC = () => {
-    const [accountType, setAccountType] = useState<String>('');
-    const [accountNumber, setCardNumber] = useState<string>('');
-    const [balance, setAmountValue] = useState<number>(0);
+const balancePage: React.FC<BalancePageProps> = ({ userId }) => {
+    const [selectedAccount, setSelectedAccount] = useState({
+        accountType: '',
+        accountNumber: '',
+        balance: 0,
+    });
+    const [accounts, setAccounts] = useState<any[]>([]);
     const [isDepositPopupOpen, setDepositPopupOpen] = useState(false);
     const [isExpensePopupOpen, setExpensePopupOpen] = useState(false);
     const [isLinkAccountPopupOpen, setLinkAccountPopupOpen] = useState(false);
-    const [items, setItems] = useState<any[]>([]);
-    
-    // Extracting the ID from the URL
-    const { id } = useParams<{ id: string }>();
+    const [transactions, setTransactions] = useState([]);
+
 
     useEffect(() => {
-        // Make a GET request to the backend API to fetch accountType and cardNumber
-        axios.get('http://localhost:8081/user_accounts/${id}/bank_accounts') // Replace with the correct API endpoint
-          .then((response) => {
-            const accounts = response.data;
-            const { accountType, accountNumber, balance } = accounts[0];
-            setAccountType(accountType);
-            setCardNumber(accountNumber);
-            setAmountValue(balance);
-          })
-          .catch((error) => {
-            console.error('API request error', error);
-          });
-      }, [id]);
+        axios.get(`http://localhost:8081/user_accounts/${userId}/bank_accounts`)
+            .then((response) => {
+                setAccounts(response.data);
+                if (response.data.length > 0) {
+                    setSelectedAccount(response.data[0]);
+                }
+            })
+            .catch((error) => {
+                console.error('API request error', error);
+            });
+    }, [userId]);
+
+    useEffect(() => {
+            if (selectedAccount.accountNumber) {
+                axios.get(`http://localhost:8081/api/transactions/account/${selectedAccount.accountNumber}`)
+                    .then((response) => {
+                        setTransactions(response.data);
+                    })
+                    .catch((error) => {
+                        console.error('Error fetching transactions:', error);
+                    });
+            }
+        }, [selectedAccount.accountNumber]);
+
+    const handleAccountSelection = (event) => {
+        const accountNumber = event.target.value;
+        const account = accounts.find(acc => acc.accountNumber === accountNumber);
+        if (account) {
+            setSelectedAccount(account);
+        }
+    };
 
     return (
-    <div>  
+    <div>
     <div className="card--container">
       <h3 className="main--title">Today's data</h3>
       <div className="card--wrapper">
         <div className="payment--card">
           <div className="card--header">
             <div className="amount">
-                <span className="title" id="accountType" >{accountType} </span>
-                <span className="amount-value" id="balance">$ {balance}</span>
+                <span className="title" id="accountType">{selectedAccount.accountType}</span>
+                <span className="amount-value" id="balance">${selectedAccount.balance}</span>
             </div>
             <i className="bi bi-currency-dollar icon"></i>
-            
+
         </div>
-        <span className="card-detail" id="accountNumber">{accountNumber}</span>
+        <span className="card-detail" id="accountNumber">**** **** **** {selectedAccount.accountNumber.slice(-4)}</span>
         </div>
 
         <div className="action--card">
@@ -63,19 +86,17 @@ const balancePage: React.FC = () => {
 
         <div className="action--displaybox">
           <div className="action--textfile">
-          
-            <div className="select--multiple">
-              <select id="multi-select" multiple>
-                <option value="Option 1">Option 1</option>
-                <option value="Option 2">Option 2</option>
-                <option value="Option 3">Option 3</option>
-                <option value="Option 4">Option 4</option>
-                <option value="Option 5">Option 5</option>
-                
-              </select>
-              <span className="focus"></span>
-            </div>
-            
+
+        <div className="account-selection">
+            <select className="account-select" onChange={handleAccountSelection} value={selectedAccount.accountNumber}>
+                {accounts.map((account, index) => (
+                    <option key={index} value={account.accountNumber}>
+                        {account.accountNumber}
+                    </option>
+                ))}
+            </select>
+        </div>
+
           </div>
         </div>
 
@@ -85,46 +106,40 @@ const balancePage: React.FC = () => {
             {isLinkAccountPopupOpen && (<LinkAccount onClose={() => setLinkAccountPopupOpen(false)} />)}
         </div>
 
-        
+
      </div>
     </div>
     <div className="tabular--wrapper">
-      <h3 className="main--title">Finance Data</h3>
-      <div className="table-container">
+    <h3 className="main--title">Finance Data</h3>
+    <div className="table-container">
         <table>
-          <thead>
-          <tr>
-            <th>Transaction Type</th>
-            <th>Description</th>
-            <th>Amount</th>
-            <th>Date</th>
-          </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                Expense
-              </td>
-              <td>
-                Food Supplies
-              </td>
-              <td>
-               $300.00
-              </td>
-              <td>
-                11-07-2023
-              </td>
-            </tr>
-          </tbody>
+            <thead>
+                <tr>
+                    <th>Transaction Type</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {transactions.map((transaction, index) => (
+                    <tr key={index}>
+                        <td>{transaction.type}</td>
+                        <td>{transaction.description}</td>
+                        <td>${transaction.amount.toFixed(2)}</td>
+                        <td>{new Date(transaction.date).toLocaleDateString()}</td>
+                    </tr>
+                ))}
+            </tbody>
         </table>
-      </div>
+    </div>
 
     </div>
     </div>
 
-  
 
-    
+
+
 )};
 
 export default balancePage;

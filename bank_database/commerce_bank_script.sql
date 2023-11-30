@@ -30,7 +30,7 @@ CREATE TABLE user_bank_account_link (
 
 CREATE TABLE transactions (
   id int PRIMARY KEY AUTO_INCREMENT,
-  bank_account_id int NOT NULL,
+  account_number varchar(255) NOT NULL,
   type varchar(255) NOT NULL,
   amount decimal NOT NULL,
   description varchar(255),
@@ -41,16 +41,10 @@ CREATE TABLE transactions (
   updated_at datetime
 );
 
-CREATE TABLE transaction_categories (
-  id int PRIMARY KEY AUTO_INCREMENT,
-  name varchar(255) UNIQUE NOT NULL,
-  created_at datetime,
-  updated_at datetime
-);
 
 CREATE TABLE reports (
   id int PRIMARY KEY AUTO_INCREMENT,
-  bank_account_id int NOT NULL,
+  account_number varchar(255) NOT NULL,
   generated_date date NOT NULL,
   type varchar(255) NOT NULL,
   file_link varchar(255),
@@ -60,7 +54,7 @@ CREATE TABLE reports (
 
 CREATE TABLE budgets_goals (
   id int PRIMARY KEY AUTO_INCREMENT,
-  bank_account_id int,
+  account_number varchar(255) NOT NULL,
   amount decimal NOT NULL,
   description varchar(255),
   type varchar(255) NOT NULL,
@@ -84,14 +78,21 @@ ALTER TABLE user_bank_account_link ADD FOREIGN KEY (user_id) REFERENCES user_acc
 
 ALTER TABLE user_bank_account_link ADD FOREIGN KEY (bank_account_id) REFERENCES bank_account (id);
 
-ALTER TABLE transactions ADD FOREIGN KEY (bank_account_id) REFERENCES bank_account (id);
+ALTER TABLE transactions
+ADD FOREIGN KEY (account_number) REFERENCES bank_account(account_number);
 
-ALTER TABLE transactions ADD FOREIGN KEY (category_id) REFERENCES transaction_categories (id);
+ALTER TABLE reports
+ADD FOREIGN KEY (account_number) REFERENCES bank_account(account_number);
 
-ALTER TABLE reports ADD FOREIGN KEY (bank_account_id) REFERENCES bank_account (id);
-
-ALTER TABLE budgets_goals ADD FOREIGN KEY (bank_account_id) REFERENCES bank_account (id);
+ALTER TABLE budgets_goals 
+ADD FOREIGN KEY (account_number) REFERENCES bank_account(account_number);
 
 ALTER TABLE notifications ADD FOREIGN KEY (user_id) REFERENCES user_account (id);
 
 ALTER TABLE notifications ADD FOREIGN KEY (report_id) REFERENCES reports (id);
+
+ALTER TABLE bank_account
+MODIFY balance DECIMAL(10, 2);
+
+ALTER TABLE transactions
+MODIFY amount DECIMAL(10, 2);

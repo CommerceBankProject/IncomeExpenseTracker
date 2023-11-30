@@ -8,15 +8,15 @@ import axios from "axios";
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-
 function DashBoard() {
     const [activeComponent, setActiveComponent] = useState<'balancepage' | 'profile' | 'statistic'>('balancepage');
     const { userId } = useParams<{ userId: string }>();
 
 
         const renderComponent = () => {
-        if (activeComponent === 'balancepage'){
-            return <BalancePage />;
+            if (activeComponent === 'balancepage') {
+                // Pass userId as a prop to BalancePage
+                return <BalancePage userId={userId} />;
         }
 
         else if (activeComponent === 'profile')
@@ -28,23 +28,20 @@ function DashBoard() {
         {
             return <UserStatistic />;
         }
-    }
+    };
 
-    const [userName, setUserName] = useState<String>('');
+    const [userName, setUserName] = useState<string>('');
+
     useEffect(() => {
-        // Use the provided API endpoint with the userId
         axios.get(`http://localhost:8081/user_accounts/${userId}`)
-        .then((response) => {
-        // Extract firstName and lastName from the response
-            const { firstName, lastName } = response.data;
-            // Set the userName state as the combination of firstName and lastName
-            setUserName(`${firstName} ${lastName}`);
+            .then((response) => {
+                const { firstName, lastName } = response.data;
+                setUserName(`${firstName} ${lastName}`);
             })
             .catch((error) => {
-        console.error('API request error', error);
-        });
+                console.error('API request error', error);
+            });
     }, [userId]);
-
 
 
     return(
@@ -53,31 +50,31 @@ function DashBoard() {
                 <div className="logo"></div>
                 <ul className="menu">
                     <li className="activity">
-                        <a href="#" onClick={() => setActiveComponent('balancepage')}>
+                        <Link to="#" onClick={() => setActiveComponent('balancepage')}>
                             <i className="bi bi-bank"></i>
                             <span>Dashboard</span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li>
-                        <a href="#" onClick={() => setActiveComponent('profile')}>
+                        <Link to="#" onClick={() => setActiveComponent('profile')}>
                             <i className="bi bi-person-lines-fill"></i>
                             <span>Profile</span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li>
-                        <a href="#" onClick={() => setActiveComponent('statistic')}>
+                        <Link to="#" onClick={() => setActiveComponent('statistic')}>
                             <i className="bi bi-card-list"></i>
                             <span>Statistic</span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li className="logout">
-                        <a href="#">
+                        <Link to="/">
                             <i className="bi bi-door-closed"></i>
-                            <span><Link to="/">Logout</Link></span>
-                        </a>
+                            <span>Logout</span>
+                        </Link>
                     </li>
                 </ul>
                 </div>
