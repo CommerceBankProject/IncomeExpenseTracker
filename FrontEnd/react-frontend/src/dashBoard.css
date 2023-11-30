@@ -7,6 +7,51 @@
    
 }
 
+/* Account Selection Dropdown Styles */
+.account-select {
+  padding: 10px 15px;
+  background-color: #f9f9f9; /* Off-white background, adjust as needed */
+  border: 1px solid #ccc; /* Light grey border */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 16px; /* Adjust the font size as needed */
+  color: #333; /* Dark text for better readability */
+  outline: none; /* Remove default focus outline */
+  cursor: pointer; /* Change cursor to indicate it's selectable */
+  -webkit-appearance: none; /* Remove default styling on WebKit browsers */
+  -moz-appearance: none; /* Remove default styling on Mozilla browsers */
+  appearance: none; /* Remove default arrow for dropdown */
+  position: relative; /* Needed to position the custom arrow */
+}
+
+/* Custom Dropdown Arrow */
+.account-select::after {
+  content: '\25BC'; /* Unicode for down arrow */
+  color: #333; /* Match the text color */
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Ensure clicks pass through to the select element */
+}
+
+/* Adjust width and margin to align with your layout */
+.account-select {
+  width: 200px; /* Example width, adjust as needed */
+  margin-right: 20px; /* Spacing to the right, adjust as needed */
+}
+
+/* Style for the select options */
+.account-select option {
+  background: #fff; /* White background for options */
+  color: #333; /* Dark text for options */
+}
+
+/* Hover effect for options - optional */
+.account-select option:hover {
+  background-color: #f2f2f2;
+}
+
+
 body{
     display: flex;
 }
