@@ -14,10 +14,16 @@ const DepositPopup: React.FC<DepositPopupProps> = ({ onClose }) => {
   const handleDeposit = async () => {
     try {
       // Make a POST request to the backend API with the deposit data
-      await axios.post("http://localhost:8081/deposit", {
-        amount: amount,
-        // other data as needed
-      });
+      await axios.post("http://localhost:8081/api/transactions", {
+        "accountNumber": accountNumber,
+        "type": type,
+        "amount": -amount,
+        "description": description
+        }, {
+        headers: {
+        'Content-Type': 'application/json'
+        }
+        });
 
       // Close the popup after successful deposit
       onClose();

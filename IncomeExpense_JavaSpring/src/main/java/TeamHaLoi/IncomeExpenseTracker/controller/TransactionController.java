@@ -53,6 +53,21 @@ public class TransactionController {
         return transactionService.getTransactionsByAccountNumberAndDateRange(accountNumber, start, end);
     }
 
+    @GetMapping("/account/{accountNumber}/date-range/expense")
+    public BigDecimal getTotalExpenseByAccountNumberAndDateRange(
+            @PathVariable(value = "accountNumber") String accountNumber,
+            @RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
+            @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end) {
+        return transactionService.getTotalExpenseByAccountNumberAndDateRange(accountNumber, start, end);
+    }
+
+    @GetMapping("/account/{accountNumber}/date-range/deposit")
+    public BigDecimal getTotalDepositByAccountNumberAndDateRange(
+            @PathVariable(value = "accountNumber") String accountNumber,
+            @RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
+            @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end) {
+        return transactionService.getTotalDepositByAccountNumberAndDateRange(accountNumber, start, end);
+    }
 
     @GetMapping("/account/{accountNumber}/recurring/{recurring}")
     public List<Transaction> getTransactionsByRecurring(

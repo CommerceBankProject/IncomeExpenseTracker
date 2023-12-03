@@ -52,6 +52,14 @@ public class TransactionService {
         return transactionRepository.findByAccountNumberAndDateBetween(accountNumber, startDate, endDate);
     }
 
+    public BigDecimal getTotalExpenseByAccountNumberAndDateRange(String accountNumber, LocalDate startDate, LocalDate endDate) {
+        return transactionRepository.findTotalExpenseByAccountNumberAndDateBetween(accountNumber, startDate, endDate);
+    }
+
+    public BigDecimal getTotalDepositByAccountNumberAndDateRange(String accountNumber, LocalDate startDate, LocalDate endDate) {
+        return transactionRepository.findTotalDepositByAccountNumberAndDateBetween(accountNumber, startDate, endDate);
+    }
+
 
     public List<Transaction> getTransactionsByRecurring(String accountNumber, Boolean recurring) {
         return transactionRepository.findByAccountNumberAndRecurring(accountNumber, recurring);
@@ -90,4 +98,6 @@ public class TransactionService {
 
         transactionRepository.delete(transaction);
     }
+
+
 }

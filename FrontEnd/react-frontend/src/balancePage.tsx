@@ -110,7 +110,7 @@ const balancePage: React.FC<BalancePageProps> = ({ userId }) => {
      </div>
     </div>
     <div className="tabular--wrapper">
-    <h3 className="main--title">Finance Data</h3>
+    <h3 className="main--title">Transactions</h3>
     <div className="table-container">
         <table>
             <thead>
@@ -136,9 +136,6 @@ const balancePage: React.FC<BalancePageProps> = ({ userId }) => {
 
     </div>
     </div>
-
-
-
 
 )};
 
