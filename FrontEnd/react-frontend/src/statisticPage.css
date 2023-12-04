@@ -9,14 +9,14 @@
    
 }
 
-.container {
+.page--container{
     width: 100%;
     max-width: 250px;
     margin-left: 100px;
     padding: 20px 15px;
   }
 
-  .action--card{
+  .action--user{
     background-color: white;
     margin-top: 50px;
     margin-right: 200px;

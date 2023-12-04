@@ -20,12 +20,12 @@ function UserStatistic () {
     return (
       <div>
         <div className="card--container">
-          <div className="container">
+          <div className="page--container">
             <h3>Budget Monthly Report</h3>
             <BarGraph dataArray={dataArray1}/>
           </div>
 
-          <div className="action--card">
+          <div className="action--user">
             <h5>Transaction List: </h5>
             <option>
 
