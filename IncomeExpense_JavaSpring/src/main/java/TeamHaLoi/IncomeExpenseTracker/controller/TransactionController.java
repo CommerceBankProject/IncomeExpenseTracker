@@ -28,10 +28,6 @@ public class TransactionController {
         return transactionService.getAllTransactions();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Transaction> getTransactionById(@PathVariable(value = "id") Integer transactionId) {
-        return ResponseEntity.ok(transactionService.getTransactionById(transactionId));
-    }
 
     @GetMapping("/account/{accountNumber}")
     public List<Transaction> getTransactionsByAccountNumber(@PathVariable(value = "accountNumber") String accountNumber) {
@@ -101,4 +97,5 @@ public class TransactionController {
         transactionService.deleteTransaction(transactionId);
         return ResponseEntity.ok().build();
     }
+
 }

@@ -73,15 +73,28 @@ public class UserAccountController {
         UserAccount userAccount = userAccountRepository.findById(userId)
                 .orElseThrow(() -> new UserAccountNotFoundException(userId));
 
-        userAccount.setEmail(userAccountDetails.getEmail());
-        String hashedPassword = PasswordUtil.hashPassword(userAccountDetails.getPassword(), userAccount.getSalt());
-        userAccount.setPassword(hashedPassword);
-        userAccount.setFirstName(userAccountDetails.getFirstName());
-        userAccount.setLastName(userAccountDetails.getLastName());
+        if (userAccountDetails.getEmail() != null && !userAccountDetails.getEmail().isEmpty()) {
+            userAccount.setEmail(userAccountDetails.getEmail());
+        }
+
+        if (userAccountDetails.getPassword() != null && !userAccountDetails.getPassword().isEmpty()) {
+            String hashedPassword = PasswordUtil.hashPassword(userAccountDetails.getPassword(), userAccount.getSalt());
+            userAccount.setPassword(hashedPassword);
+        }
+
+        if (userAccountDetails.getFirstName() != null && !userAccountDetails.getFirstName().isEmpty()) {
+            userAccount.setFirstName(userAccountDetails.getFirstName());
+        }
+
+        if (userAccountDetails.getLastName() != null && !userAccountDetails.getLastName().isEmpty()) {
+            userAccount.setLastName(userAccountDetails.getLastName());
+        }
+
         userAccount.setUpdatedAt(LocalDateTime.now());
 
         return userAccountRepository.save(userAccount);
     }
+
 
     // Delete a UserAccount
     @DeleteMapping("/{id}")

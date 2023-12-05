@@ -26,6 +26,7 @@ public class PasswordUtil {
     public static String generateSalt() {
         byte[] salt = new byte[16];
         new SecureRandom().nextBytes(salt);
-        return new String(salt);
+        return Base64.getEncoder().encodeToString(salt);
     }
+
 }
